@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+
+  body {
+    @apply bg-cream font-body text-ink dark:bg-ink dark:text-cream;
+  }
+
+  /* Feature 25 — keyboard accessibility: visible focus rings everywhere. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-cream dark:ring-offset-ink;
+  }
+}
+
+/* ── Announcement strip — CSS-only motion ──────────────────────────── */
+
+/* Fade masks at both edges: items glide in from off-screen instead of
+   hard-clipping — this is what fixes the "starts at the edge" look. */
+.marquee-viewport {
+  overflow: hidden;
+  padding-left: 88px; /* clears the label pill */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 96px,
+    black calc(100% - 64px),
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 96px,
+    black calc(100% - 64px),
+    transparent
+  );
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+  will-change: transform;
+}
+
+.marquee-item {
+  @apply whitespace-nowrap py-2.5 text-sm font-semibold tracking-wide drop-shadow-sm;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Slow sheen sweep across the whole strip. */
+.strip-sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgb(255 255 255 / 0.22) 50%,
+    transparent 58%
+  );
+  background-size: 260% 100%;
+  animation: sheen-sweep 7s ease-in-out infinite;
+}
+
+/* Motion is a garnish: static, readable, honest under reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .strip-sheen {
+    animation: none;
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sheen-sweep {
+  0% {
+    background-position: 130% 0;
+  }
+  100% {
+    background-position: -130% 0;
+  }
+}
