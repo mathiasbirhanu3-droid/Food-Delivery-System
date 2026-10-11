@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import { hashPassword, verifyCredentials } from '@/lib/auth';
 import { clearFailures, registerFailure, remainingLockSeconds } from '@/lib/rate-limit';
 import { getUserByEmail } from '@/lib/db';
-import { insertUser } from '@/lib/users-store';
+import { insertUser, recordLoginActivity } from '@/lib/users-store';
 import { signUpSchema } from '@/features/auth/schema';
 import { sanitizeNext } from '@/lib/sanitize';
 import { SESSION_COOKIE, createSessionValue, sessionCookieOptions } from '@/lib/session';
@@ -18,6 +18,9 @@ function lockMessage(seconds: number): string {
 
 // AUTH.md — credentials verified server-side; next sanitized BEFORE any
 // redirect; failures rate-limited per email; errors stay generic.
+// AUDIT: every attempt is recorded (success / wrong-password / locked) —
+// failures are logged as 'wrong-password' even for unknown emails, because
+// telling them apart in the log would defeat the enumeration defense.
 export async function signInAction(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const email = String(formData.get('email') ?? '').trim().toLowerCase();
   const password = String(formData.get('password') ?? '');
@@ -26,16 +29,24 @@ export async function signInAction(_prev: AuthState, formData: FormData): Promis
   if (!email || !password) return { error: 'Enter your email and password.' };
 
   const lockedFor = remainingLockSeconds(email);
-  if (lockedFor > 0) return { error: lockMessage(lockedFor) };
+  if (lockedFor > 0) {
+    recordLoginActivity({ email, outcome: 'locked' });
+    return { error: lockMessage(lockedFor) };
+  }
 
   const user = await verifyCredentials(email, password);
   if (!user) {
     const lockAfter = registerFailure(email);
-    if (lockAfter > 0) return { error: lockMessage(lockAfter) };
+    recordLoginActivity({ email, outcome: 'wrong-password' });
+    if (lockAfter > 0) {
+      return { error: lockMessage(lockAfter) };
+    }
     return { error: 'Email or password is incorrect.' };
   }
 
   clearFailures(email);
+  recordLoginActivity({ email, userId: user.id, outcome: 'success' });
+
   const store = await cookies();
   store.set(SESSION_COOKIE, await createSessionValue(user), sessionCookieOptions());
 
@@ -45,7 +56,8 @@ export async function signInAction(_prev: AuthState, formData: FormData): Promis
 
 // AUTH.md — role is NEVER taken from client input; the store fixes it to
 // 'customer'. Kitchen accounts exist only in the seed. New users are signed
-// in immediately (standard UX), with the same flagged cookie.
+// in immediately with the same flagged cookie, and their registration +
+// first login are recorded in the audit trail.
 export async function signUpAction(_prev: AuthState, formData: FormData): Promise<AuthState> {
   const next = sanitizeNext(String(formData.get('next') ?? ''));
 
@@ -75,13 +87,16 @@ export async function signUpAction(_prev: AuthState, formData: FormData): Promis
     passwordSalt,
   });
 
+  recordLoginActivity({ email: user.email, userId: user.id, outcome: 'success' });
+
   const store = await cookies();
   store.set(SESSION_COOKIE, await createSessionValue(user), sessionCookieOptions());
 
   redirect(next !== '/' ? next : '/menu');
 }
 
-// AUTH.md — signOutAction: clears the session cookie.
+// AUTH.md — signOutAction: clears the session cookie. No body to check,
+// nothing to scope — and nothing to audit (logout is not an attempt).
 export async function signOutAction() {
   const store = await cookies();
   store.delete(SESSION_COOKIE);

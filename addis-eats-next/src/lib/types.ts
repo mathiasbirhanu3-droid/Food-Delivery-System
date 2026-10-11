@@ -51,3 +51,12 @@ export interface Restaurant {
   name: string; tagline: string; address: string; phone: string;
   hours: string; currency: string; zones: string[];
 }
+export interface LoginActivity {
+  id: string;
+  email: string;
+  userId?: string;
+  at: string;
+  outcome: 'success' | 'wrong-password' | 'unknown-email' | 'locked' | 'google';
+  ip?: string;
+  userAgent?: string;
+}
