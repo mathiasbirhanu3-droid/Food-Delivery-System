@@ -20,7 +20,13 @@ export default async function MenuPage({
   const { category, sort } = await searchParams;
   const active = CATEGORIES.find((c) => c === category) as Category | undefined;
 
-  let dishes = active ? getDishes().filter((d) => d.category === active) : getDishes();
+  const all = getDishes();
+
+  // live counts for the sidebar — computed from the single data source
+  const counts: Record<string, number> = { all: all.length };
+  for (const c of CATEGORIES) counts[c] = all.filter((d) => d.category === c).length;
+
+  let dishes = active ? all.filter((d) => d.category === active) : all;
 
   if (sort === 'loved') {
     const favs = getFavoriteCounts();
@@ -47,20 +53,24 @@ export default async function MenuPage({
         </p>
       </header>
 
-      <div className="mt-6">
-        <CategoryBar active={active} sort={sort} />
-      </div>
+      {/* left column: categories (sticky on desktop, chips on mobile) */}
+      <div className="mt-6 flex flex-col gap-6 lg:flex-row">
+        <aside className="self-start lg:sticky lg:top-24 lg:w-56 lg:shrink-0">
+          <CategoryBar active={active} sort={sort} counts={counts} />
+        </aside>
 
-      <div className="mt-4">
-        <MenuSearch category={active ?? ''}>
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {dishes.map((dish, index) => (
-              <li key={dish.id}>
-                <DishCard dish={dish} priority={index < 3} />
-              </li>
-            ))}
-          </ul>
-        </MenuSearch>
+        {/* right column: search + dish grid */}
+        <div className="min-w-0 flex-1">
+          <MenuSearch category={active ?? ''}>
+            <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+              {dishes.map((dish, index) => (
+                <li key={dish.id}>
+                  <DishCard dish={dish} priority={index < 3} />
+                </li>
+              ))}
+            </ul>
+          </MenuSearch>
+        </div>
       </div>
     </section>
   );
