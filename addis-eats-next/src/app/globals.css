@@ -19,8 +19,6 @@
 
 /* ── Announcement strip — CSS-only motion ──────────────────────────── */
 
-/* Fade masks at both edges: items glide in from off-screen instead of
-   hard-clipping — this is what fixes the "starts at the edge" look. */
 .marquee-viewport {
   overflow: hidden;
   padding-left: 88px; /* clears the label pill */
@@ -55,7 +53,6 @@
   animation-play-state: paused;
 }
 
-/* Slow sheen sweep across the whole strip. */
 .strip-sheen {
   position: absolute;
   inset: 0;
@@ -70,7 +67,6 @@
   animation: sheen-sweep 7s ease-in-out infinite;
 }
 
-/* Motion is a garnish: static, readable, honest under reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .strip-sheen {
@@ -79,19 +75,36 @@
 }
 
 @keyframes marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 @keyframes sheen-sweep {
-  0% {
-    background-position: 130% 0;
-  }
-  100% {
-    background-position: -130% 0;
-  }
+  0%   { background-position: 130% 0; }
+  100% { background-position: -130% 0; }
+}
+
+/* ── Tracking map (Leaflet) ─────────────────────────────────────────── */
+
+.tracking-marker {
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.25);
+}
+
+/* the courier glides between SSE ticks */
+.leaflet-marker-icon.tracking-marker {
+  transition: transform 2.4s linear;
+}
+
+/* dark-mode tiles — the standard filter trick */
+.dark .leaflet-tile-pane {
+  filter: brightness(0.6) invert(1) contrast(2.2) hue-rotate(185deg) saturate(0.4) brightness(0.85);
+}
+
+.dark .leaflet-container {
+  background: #171512;
 }
