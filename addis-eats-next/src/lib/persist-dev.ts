@@ -2,10 +2,10 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 /**
- * Dev-only write-back: merges the mutated store back into db.json so the
- * single data source stays true across dev restarts/HMR. No-ops in
- * production (serverless FS is read-only — in-memory behavior documented
- * in docs/DATA.md). Read-merge-write so stores don't overwrite each other.
+ * Dev-only write-back: merges the mutated collection back into db.json so
+ * the single data source stays true across dev restarts. Read-merge-write,
+ * per top-level key, so stores don't clobber each other. No-ops in
+ * production (serverless FS is read-only — see docs/DATA.md).
  */
 export function persistDbDev(patch: Record<string, unknown>): void {
   if (process.env.NODE_ENV !== 'development') return;

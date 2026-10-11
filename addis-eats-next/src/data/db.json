@@ -96,9 +96,49 @@
       "passwordHash": "pbkdf2-sha256$100000$a14b934090e288ba719e04417a49bfc26cda658796d0f3093b0308a1395a21ec",
       "passwordSalt": "26628cd745ae7ac28fed6ad4209972f9",
       "role": "customer"
+    },
+    {
+      "id": "u_mv3wgain",
+      "email": "math@gmail.com",
+      "name": "kebede gemechu",
+      "phone": "0979738484",
+      "defaultZone": "Bole",
+      "passwordHash": "pbkdf2-sha256$100000$85a112c74969472e86eb20bd758d296f84f278cd6470d589ddbd91d8cb615f9d",
+      "passwordSalt": "c1c7e07ecdb6de126a63a59abcb529e9",
+      "role": "customer",
+      "provider": "local"
+    },
+    {
+      "id": "u_mv3wiclh",
+      "email": "naser@gmail.com",
+      "name": "Nasere Zemene",
+      "phone": "0919362286",
+      "defaultZone": "Piassa",
+      "passwordHash": "pbkdf2-sha256$100000$78fbf2b3a9e28c5b368ff211845be01d2156e9c0e8b7ab178bcc7625396ef483",
+      "passwordSalt": "7d0f446d9d9047c832e648f6471c53f7",
+      "role": "customer",
+      "provider": "local"
     }
   ],
   "dishes": [
+    {
+      "id": "firfir",
+      "slug": "firfir",
+      "name": "Firfir",
+      "description": "jvnjnjvnfjn  jnvjnvjsdnvjn  mnkndln  n jdnvjdnvjn mnkvndlkmvlkd",
+      "ingredients": [],
+      "category": "Ethiopian",
+      "price": 345,
+      "image": "https://i.pinimg.com/736x/c8/7f/f4/c87ff49acf77764ebdf7d81be8da0fa8.jpg",
+      "tags": [],
+      "spicy": false,
+      "vegetarian": false,
+      "popular": false,
+      "prepMinutes": 20,
+      "rating": 0,
+      "available": true,
+      "discountPercent": 0
+    },
     {
       "id": "whiskey",
       "slug": "whiskey",
@@ -431,6 +471,55 @@
     }
   ],
   "orders": [
+    {
+      "id": "ord_904",
+      "userId": "u_muzublsl",
+      "items": [
+        {
+          "dishId": "bulla",
+          "qty": 2,
+          "unitPrice": 450
+        },
+        {
+          "dishId": "whiskey",
+          "qty": 1,
+          "unitPrice": 320
+        },
+        {
+          "dishId": "doro-wat",
+          "qty": 1,
+          "unitPrice": 320
+        }
+      ],
+      "zone": "Piassa",
+      "fee": 50,
+      "etaMin": 35,
+      "etaMax": 50,
+      "contact": {
+        "name": "Mathias Berhanu",
+        "phone": "+251911234567"
+      },
+      "status": "delivered",
+      "placedAt": "2026-10-11T15:04:28.721Z",
+      "events": [
+        {
+          "at": "2026-10-11T15:04:28.721Z",
+          "status": "pending"
+        },
+        {
+          "at": "2026-10-11T15:06:34.792Z",
+          "status": "preparing"
+        },
+        {
+          "at": "2026-10-11T15:19:23.336Z",
+          "status": "delivering"
+        },
+        {
+          "at": "2026-10-11T15:19:28.076Z",
+          "status": "delivered"
+        }
+      ]
+    },
     {
       "id": "ord_903",
       "userId": "u_dawit",
@@ -912,6 +1001,16 @@
       "userId": "u_dawit",
       "dishId": "sega-tibs",
       "at": "2026-10-08T11:46:35.716Z"
+    },
+    {
+      "userId": "u_muzublsl",
+      "dishId": "whiskey",
+      "at": "2026-10-11T15:20:02.486Z"
+    },
+    {
+      "userId": "u_muzublsl",
+      "dishId": "firfir",
+      "at": "2026-10-11T15:20:03.837Z"
     }
   ],
   "announcements": [
@@ -927,6 +1026,15 @@
       "href": "/menu?category=Ethiopian",
       "tone": "festival",
       "active": false
+    }
+  ],
+  "loginActivity": [
+    {
+      "id": "act_mv3z11it_lq05",
+      "at": "2026-10-11T15:21:36.245Z",
+      "email": "mathiasberhanu1@gmail.com",
+      "userId": "u_muzublsl",
+      "outcome": "success"
     }
   ]
 }
