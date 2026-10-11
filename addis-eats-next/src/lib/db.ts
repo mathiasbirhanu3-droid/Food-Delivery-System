@@ -19,6 +19,7 @@ export const getZone = (name: string): Zone | null =>
 export const getDishes = (): Dish[] => listAllDishes().filter((d) => d.available);
 export const getDish = (id: string): Dish | null => findDishById(id);
 export { findDishById };
+export { getSpecialOfDay } from '@/lib/dishes-store';
 
 // ── users (delegated to the mutable store) ───────────────────────────
 export const getUserByEmail = storeGetUserByEmail;

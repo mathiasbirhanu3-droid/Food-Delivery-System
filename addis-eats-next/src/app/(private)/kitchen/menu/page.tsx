@@ -3,7 +3,7 @@ import { listAllDishes } from '@/lib/dishes-store';
 import { deleteDish, toggleDishAvailability, upsertDish } from '@/actions/kitchen';
 import ConfirmSubmit from '@/features/kitchen/ConfirmSubmit';
 import DishMarketingForm from '@/features/kitchen/DishMarketingForm';
-import { formatETB } from '@/lib/format-etb';
+import { formatETB } from '@/lib/format';
 import { priceOf } from '@/lib/pricing';
 import { CATEGORIES } from '@/features/menu/categories';
 import { requireKitchen } from '@/features/auth/guards';
@@ -23,12 +23,12 @@ export default async function KitchenMenuPage({
     <section className="mx-auto max-w-4xl px-4 py-12">
       <h1 className="font-display text-3xl font-bold">Menu manager</h1>
       <p className="mt-1 text-sm text-ink/60 dark:text-cream/60">
-        Name, marketing line, price and discount — all editable here. Changes go live on the menu instantly.
+        Name, marketing line, ingredients, price, discount, popular and Special of the Day — all editable here, live on the site instantly.
       </p>
 
       {invalid && (
         <p role="alert" className="mt-4 rounded-xl bg-accent/10 p-3 text-sm font-medium text-accent">
-          A dish form had invalid values — name needs 2+ characters, description 10+, price above 0, discount between 0 and 90.
+          A dish form had invalid values — name 2+, description 10+, price above 0, discount 0–90.
         </p>
       )}
 
@@ -54,6 +54,17 @@ export default async function KitchenMenuPage({
                         {discountPercent}% OFF
                       </span>
                     )}
+                    {dish.popular && (
+                      <span className="ml-1 rounded-full bg-gold px-2 py-0.5 text-xs font-bold text-ink">⭐ Popular</span>
+                    )}
+                    {dish.specialOfDay && (
+                      <span className="ml-1 rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-white">🔥 Special today</span>
+                    )}
+                    {!dish.available && (
+                      <span className="ml-1 rounded-full bg-ink/10 px-2 py-0.5 text-xs font-bold text-ink/60 dark:bg-cream/10 dark:text-cream/60">
+                        hidden
+                      </span>
+                    )}
                   </p>
                   <p className="text-sm">
                     {discountPercent > 0 && (
@@ -66,9 +77,12 @@ export default async function KitchenMenuPage({
                   {dish.marketingLine && (
                     <p className="mt-0.5 text-xs text-ink/50 dark:text-cream/50">✦ {dish.marketingLine}</p>
                   )}
-                  <p className="text-xs text-ink/50 dark:text-cream/50">
-                    {dish.category} · {dish.available ? 'available' : 'hidden'}
-                  </p>
+                  {(dish.ingredients?.length ?? 0) > 0 && (
+                    <p className="text-xs text-ink/50 dark:text-cream/50">
+                      {(dish.ingredients ?? []).join(' · ')}
+                    </p>
+                  )}
+                  <p className="text-xs text-ink/50 dark:text-cream/50">{dish.category}</p>
                 </div>
 
                 <div className="flex items-center gap-2">
@@ -96,9 +110,12 @@ export default async function KitchenMenuPage({
                     name: dish.name,
                     marketingLine: dish.marketingLine ?? '',
                     description: dish.description,
+                    ingredients: (dish.ingredients ?? []).join(', '),
                     price: dish.price,
                     discountPercent: dish.discountPercent ?? 0,
                     image: dish.image,
+                    popular: dish.popular ?? false,
+                    specialOfDay: dish.specialOfDay ?? false,
                   }}
                 />
               </details>

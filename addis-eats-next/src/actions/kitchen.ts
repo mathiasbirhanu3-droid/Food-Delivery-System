@@ -58,7 +58,7 @@ async function assertKitchen() {
   return session;
 }
 
-// ── unified dish marketing form (create + update in one action) ──────
+// ── unified dish form: name, marketing, ingredients, price, discount, popular, special ──
 export async function upsertDish(formData: FormData): Promise<void> {
   await assertKitchen();
 
@@ -67,13 +67,19 @@ export async function upsertDish(formData: FormData): Promise<void> {
     name: formData.get('name'),
     marketingLine: formData.get('marketingLine') || '',
     description: formData.get('description'),
+    ingredients: formData.get('ingredients'),
     price: formData.get('price'),
     discountPercent: formData.get('discountPercent') || 0,
     image: formData.get('image') || '',
+    popular: formData.get('popular') === 'on' || formData.get('popular') === 'true',
+    specialOfDay: formData.get('specialOfDay') === 'on' || formData.get('specialOfDay') === 'true',
   });
   if (!parsed.success) redirect('/kitchen/menu?invalid=1');
 
-  const { name, marketingLine, description, price, discountPercent, image } = parsed.data;
+  const {
+    name, marketingLine, description, ingredients,
+    price, discountPercent, image, popular, specialOfDay,
+  } = parsed.data;
 
   if (id) {
     // Update — the form id must exist in the store; it grants no authority.
@@ -82,9 +88,12 @@ export async function upsertDish(formData: FormData): Promise<void> {
         name,
         marketingLine: marketingLine || undefined,
         description,
+        ingredients,
         price,
         discountPercent,
         image: image || undefined,
+        popular,
+        specialOfDay, // patchDish enforces the one-special invariant
       });
     }
   } else {
@@ -94,27 +103,28 @@ export async function upsertDish(formData: FormData): Promise<void> {
       slug: newId,
       name,
       description,
-      ingredients: [],
+      ingredients,
       category: (String(formData.get('category') ?? '') as DishCategory) || 'Ethiopian',
       price,
       image:
         image ||
-        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1080&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=70&w=1080&auto=format&fit=crop',
       tags: [],
       spicy: false,
       vegetarian: false,
-      popular: false,
+      popular,
       prepMinutes: 20,
       rating: 0,
       available: true,
       marketingLine: marketingLine || undefined,
       discountPercent,
+      specialOfDay,
     });
   }
 
   revalidatePath('/kitchen/menu');
   revalidatePath('/menu');
-  revalidatePath('/');
+  revalidatePath('/'); // the Special-of-the-Day hero lives here
 }
 
 export async function toggleDishAvailability(formData: FormData) {

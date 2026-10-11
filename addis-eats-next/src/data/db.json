@@ -104,6 +104,50 @@
   ],
   "dishes": [
     {
+      "id": "row-meat",
+      "slug": "row-meat",
+      "name": "Row Meat",
+      "description": "Ethiopian Traditional Food Made From Row mEat",
+      "ingredients": [
+        "Row meat",
+        "Awazze",
+        "Mitemita"
+      ],
+      "category": "Ethiopian",
+      "price": 2800,
+      "image": "https://i.pinimg.com/736x/c8/f9/4a/c8f94a204d829f8bdbc69b302a08032c.jpg",
+      "tags": [],
+      "spicy": false,
+      "vegetarian": false,
+      "popular": false,
+      "prepMinutes": 20,
+      "rating": 0,
+      "available": true,
+      "marketingLine": "prepared By Chef Moges",
+      "discountPercent": 0,
+      "specialOfDay": true
+    },
+    {
+      "id": "gored-gored",
+      "slug": "gored-gored",
+      "name": "Gored Gored",
+      "description": "Ethiopian food is as colorful and fun as it is tasty. It’s a communal meal that entails eating many Ethiopian dishes made with meat and vegetables with injera.",
+      "ingredients": [],
+      "category": "Ethiopian",
+      "price": 1320,
+      "image": "https://i.pinimg.com/1200x/82/9c/75/829c75c08fab9ec254d360fea5cb5626.jpg",
+      "tags": [],
+      "spicy": false,
+      "vegetarian": false,
+      "popular": false,
+      "prepMinutes": 20,
+      "rating": 0,
+      "available": true,
+      "marketingLine": "prepared By Chef Moges",
+      "discountPercent": 0,
+      "specialOfDay": false
+    },
+    {
       "id": "doro-wat",
       "slug": "doro-wat",
       "name": "Doro Wat",
@@ -115,6 +159,7 @@
         "Injera",
         "Boiled egg"
       ],
+      "specialOfDay": false,
       "category": "Ethiopian",
       "price": 320,
       "image": "https://i.pinimg.com/736x/1d/3b/cb/1d3bcb0d9bb1bdc71a7a23d32408cfe4.jpg",
@@ -144,7 +189,7 @@
       ],
       "category": "Ethiopian",
       "price": 350,
-      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/736x/a1/24/76/a12476f1cca1ef9debd348a2db391961.jpg",
       "tags": [
         "sizzling"
       ],
@@ -153,7 +198,8 @@
       "popular": true,
       "prepMinutes": 30,
       "rating": 4.8,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "kitfo",
@@ -168,7 +214,7 @@
       ],
       "category": "Ethiopian",
       "price": 380,
-      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/736x/4f/bb/98/4fbb9815f7fa494deb05ad72b096e3e3.jpg",
       "tags": [
         "signature"
       ],
@@ -177,7 +223,8 @@
       "popular": false,
       "prepMinutes": 25,
       "rating": 4.7,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "shiro-wat",
@@ -192,7 +239,7 @@
       ],
       "category": "Ethiopian",
       "price": 190,
-      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/736x/f3/e0/04/f3e00441e6e7a7459d95cf9d8f9f8292.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -201,7 +248,8 @@
       "popular": false,
       "prepMinutes": 20,
       "rating": 4.6,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "beyainatu",
@@ -217,7 +265,7 @@
       ],
       "category": "Ethiopian",
       "price": 240,
-      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/1200x/fe/66/d4/fe66d411004effede40bbac55e4e53fa.jpg",
       "tags": [
         "platter"
       ],
@@ -226,7 +274,8 @@
       "popular": false,
       "prepMinutes": 30,
       "rating": 4.7,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "margherita",
@@ -250,7 +299,8 @@
       "popular": false,
       "prepMinutes": 25,
       "rating": 4.5,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "berbere-pizza",
@@ -275,7 +325,8 @@
       "prepMinutes": 30,
       "rating": 4.7,
       "available": true,
-      "discountPercent": 10
+      "discountPercent": 10,
+      "specialOfDay": false
     },
     {
       "id": "cheeseburger",
@@ -300,7 +351,8 @@
       "popular": false,
       "prepMinutes": 20,
       "rating": 4.4,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "injera-burger",
@@ -324,7 +376,8 @@
       "popular": true,
       "prepMinutes": 22,
       "rating": 4.6,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "mango-juice",
@@ -346,7 +399,8 @@
       "popular": false,
       "prepMinutes": 5,
       "rating": 4.8,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "buna",
@@ -359,7 +413,7 @@
       ],
       "category": "Drinks",
       "price": 60,
-      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/736x/48/10/a7/4810a72a820724f4fe568ebfb5318c9a.jpg",
       "tags": [
         "coffee"
       ],
@@ -368,7 +422,8 @@
       "popular": true,
       "prepMinutes": 8,
       "rating": 4.9,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     },
     {
       "id": "tej",
@@ -381,7 +436,7 @@
       ],
       "category": "Drinks",
       "price": 120,
-      "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=70&w=1080&auto=format&fit=crop",
+      "image": "https://i.pinimg.com/1200x/d5/c5/d1/d5c5d1d3b72233c2df940dd852d9127c.jpg",
       "tags": [
         "traditional"
       ],
@@ -390,7 +445,8 @@
       "popular": false,
       "prepMinutes": 3,
       "rating": 4.3,
-      "available": true
+      "available": true,
+      "specialOfDay": false
     }
   ],
   "orders": [
@@ -726,6 +782,11 @@
       "userId": "u_dawit",
       "dishId": "sega-tibs",
       "at": "2025-06-12T09:00:00Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "gored-gored",
+      "at": "2026-10-11T19:34:27.139Z"
     }
   ],
   "announcements": [
@@ -746,8 +807,8 @@
   ],
   "loginActivity": [
     {
-      "id": "act_mv42knnm_2o2b",
-      "at": "2026-10-11T17:00:50.243Z",
+      "id": "act_mv4a2ohx_2rir",
+      "at": "2026-10-11T20:30:48.453Z",
       "email": "kitchen@demo.et",
       "userId": "u_kitchen",
       "outcome": "success"

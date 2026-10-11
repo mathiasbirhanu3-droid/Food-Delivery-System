@@ -3,7 +3,7 @@ export type OrderStatus = 'pending' | 'preparing' | 'delivering' | 'delivered' |
 
 export interface Zone {
   name: string; fee: number; etaMin: number; etaMax: number;
-  center?: [number, number];   // map dropoff coordinates
+  center?: [number, number];
 }
 
 export interface User {
@@ -19,6 +19,7 @@ export interface Dish {
   spicy: boolean; vegetarian: boolean; popular: boolean;
   prepMinutes: number; rating: number; available: boolean;
   marketingLine?: string; discountPercent?: number;
+  specialOfDay?: boolean;   // at most ONE dish carries this (store-enforced)
 }
 
 export interface Favorite { userId: string; dishId: string; at: string }
@@ -38,8 +39,7 @@ export interface Order {
   zone: string; fee: number; etaMin: number; etaMax: number;
   note?: string; contact?: { name: string; phone: string };
   status: OrderStatus; placedAt: string; events: OrderEvent[];
-  deliveringAt?: string;   // set once when status → delivering; drives the live position
-  courier?: Courier;       // assigned at dispatch; stable afterwards
+  deliveringAt?: string; courier?: Courier;
 }
 
 export interface LoginActivity {
@@ -51,5 +51,5 @@ export interface LoginActivity {
 export interface Restaurant {
   name: string; tagline: string; address: string; phone: string;
   hours: string; currency: string; zones: string[];
-  location?: [number, number];   // map origin coordinates
+  location?: [number, number];
 }
