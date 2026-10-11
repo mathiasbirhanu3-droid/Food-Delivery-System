@@ -14,6 +14,12 @@ const OAUTH_ERRORS: Record<string, string> = {
   google_denied: 'Google sign-in was cancelled — no problem, try again.',
   google_link: 'This email already has a password account. Sign in with your password.',
   google_failed: 'Google sign-in could not complete. Please try again.',
+  google_failed_state:
+    'Google sign-in stopped at the cookie check — allow cookies for this site and try again.',
+  google_failed_token:
+    'Google sign-in stopped at the token exchange — GOOGLE_CLIENT_SECRET in the deployment does not match the OAuth client.',
+  google_failed_claims:
+    'Google sign-in stopped at the identity check — GOOGLE_CLIENT_ID does not match the OAuth client that issued the token.',
 };
 
 export default async function SignInPage({
@@ -30,7 +36,7 @@ export default async function SignInPage({
   }
 
   const googleEnabled = Boolean(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET);
-  const oauthError = error ? OAUTH_ERRORS[error] : undefined;
+  const oauthError = error ? (OAUTH_ERRORS[error] ?? OAUTH_ERRORS.google_failed) : undefined;
 
   return <SignInForm next={safeNext} googleEnabled={googleEnabled} oauthError={oauthError} />;
 }

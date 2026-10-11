@@ -7,8 +7,15 @@ const STATE_COOKIE = 'google_oauth';
 
 /**
  * AUTH.md — OAuth start: a 32-byte random state goes into a short-lived
- * HttpOnly cookie (with the sanitized `next`), and we redirect to Google
+ * HttpOnly cookie (carrying the sanitized `next`), and we redirect to Google
  * with the exact registered redirect_uri. The cookie is the CSRF defense.
+ *
+ * Cookie policy: in production the state cookie is SameSite=None; Secure so
+ * it survives the cross-site redirect chain through accounts.google.com —
+ * with Lax, some browsers drop it on the way back and the callback refuses
+ * with google_failed_state. Single-use + 10-minute TTL keep None safe here.
+ * In development (http://localhost) Lax is used, because SameSite=None
+ * requires Secure, which plain-HTTP localhost cannot carry.
  */
 export async function GET(request: NextRequest) {
   const clientId = process.env.GOOGLE_CLIENT_ID;
@@ -21,17 +28,20 @@ export async function GET(request: NextRequest) {
   const next = sanitizeNext(request.nextUrl.searchParams.get('next') ?? '');
   const state = randomHex(32);
 
+  const isProduction = process.env.NODE_ENV === 'production';
+  const stateCookieOptions = {
+    httpOnly: true,
+    secure: isProduction,
+    sameSite: (isProduction ? 'none' : 'lax') as 'none' | 'lax',
+    path: '/',
+    maxAge: 600, // ten minutes to complete the consent round-trip
+  };
+
   const store = await cookies();
   store.set(
     STATE_COOKIE,
     toBase64Url(new TextEncoder().encode(JSON.stringify({ s: state, n: next }))),
-    {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax' as const,
-      path: '/',
-      maxAge: 600, // ten minutes to complete the consent round-trip
-    },
+    stateCookieOptions,
   );
 
   const authUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth');
