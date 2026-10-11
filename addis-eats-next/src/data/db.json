@@ -12,6 +12,10 @@
       "Piassa",
       "Saris",
       "Gerji"
+    ],
+    "location": [
+      9.0054,
+      38.7636
     ]
   },
   "zones": [
@@ -19,31 +23,51 @@
       "name": "Bole",
       "fee": 40,
       "etaMin": 25,
-      "etaMax": 35
+      "etaMax": 35,
+      "center": [
+        9.01,
+        38.78
+      ]
     },
     {
       "name": "Kazanchis",
       "fee": 35,
       "etaMin": 30,
-      "etaMax": 40
+      "etaMax": 40,
+      "center": [
+        9.016,
+        38.758
+      ]
     },
     {
       "name": "Piassa",
       "fee": 50,
       "etaMin": 35,
-      "etaMax": 50
+      "etaMax": 50,
+      "center": [
+        9.034,
+        38.748
+      ]
     },
     {
       "name": "Saris",
       "fee": 45,
       "etaMin": 30,
-      "etaMax": 45
+      "etaMax": 45,
+      "center": [
+        8.963,
+        38.738
+      ]
     },
     {
       "name": "Gerji",
       "fee": 55,
       "etaMin": 40,
-      "etaMax": 55
+      "etaMax": 55,
+      "center": [
+        8.965,
+        38.81
+      ]
     }
   ],
   "users": [
@@ -54,8 +78,8 @@
       "phone": "+251 91 123 4567",
       "role": "customer",
       "defaultZone": "Bole",
-      "passwordHash": "pbkdf2-sha256$100000$b3c1100d004378d39f993198703e9993f705b830df9865ceb58ff21697e3b97d",
-      "passwordSalt": "fc86e172b7fae24fa022791ab90a12fd"
+      "passwordSalt": "f51b31431dd7510bca2b896a66ea16c9",
+      "passwordHash": "pbkdf2-sha256$100000$ec8ce94decc964d22ab0b0918e8f2897edb64c4443de15bffa9fe93b21a2f38a"
     },
     {
       "id": "u_dawit",
@@ -64,118 +88,21 @@
       "phone": "+251 91 234 5678",
       "role": "customer",
       "defaultZone": "Kazanchis",
-      "passwordHash": "pbkdf2-sha256$100000$999582800e5aa332ebf5c5a64fc87724e98281c451d1b908c8cbf546dfd69250",
-      "passwordSalt": "6f467a944ad6b58cf1cec9dd1a3c5793"
+      "passwordSalt": "45d588bf12419c0a81bbceb4a70dc626",
+      "passwordHash": "pbkdf2-sha256$100000$bfaff3e0a60d85c0d6e9380a328a02fd3fd471c801c4d6127072015b40aa8aca"
     },
     {
       "id": "u_kitchen",
       "email": "kitchen@demo.et",
       "name": "Kitchen Staff",
-      "phone": "...",
+      "phone": "+251 11 552 0110",
       "role": "kitchen",
       "defaultZone": "Bole",
-      "passwordHash": "pbkdf2-sha256$100000$733619496193de0353db37ac3d955ce55eeda9f263fe6e3cabbb66f826fa3486",
-      "passwordSalt": "c459b7dbc36f46f9099c8c28fcedab58"
-    },
-    {
-      "id": "u_kitchen",
-      "email": "kitchen@demo.et",
-      "passwordHash": "pbkdf2-sha256$100000$<64 hex chars>",
-      "passwordSalt": "<32 hex chars>",
-      "name": "Kitchen Staff",
-      "phone": "...",
-      "role": "kitchen",
-      "defaultZone": "Bole"
-    },
-    {
-      "id": "u_muzublsl",
-      "email": "mathiasberhanu1@gmail.com",
-      "name": "Mathias Berhanu",
-      "phone": "+251911234567",
-      "defaultZone": "Piassa",
-      "passwordHash": "pbkdf2-sha256$100000$a14b934090e288ba719e04417a49bfc26cda658796d0f3093b0308a1395a21ec",
-      "passwordSalt": "26628cd745ae7ac28fed6ad4209972f9",
-      "role": "customer"
-    },
-    {
-      "id": "u_mv3wgain",
-      "email": "math@gmail.com",
-      "name": "kebede gemechu",
-      "phone": "0979738484",
-      "defaultZone": "Bole",
-      "passwordHash": "pbkdf2-sha256$100000$85a112c74969472e86eb20bd758d296f84f278cd6470d589ddbd91d8cb615f9d",
-      "passwordSalt": "c1c7e07ecdb6de126a63a59abcb529e9",
-      "role": "customer",
-      "provider": "local"
-    },
-    {
-      "id": "u_mv3wiclh",
-      "email": "naser@gmail.com",
-      "name": "Nasere Zemene",
-      "phone": "0919362286",
-      "defaultZone": "Piassa",
-      "passwordHash": "pbkdf2-sha256$100000$78fbf2b3a9e28c5b368ff211845be01d2156e9c0e8b7ab178bcc7625396ef483",
-      "passwordSalt": "7d0f446d9d9047c832e648f6471c53f7",
-      "role": "customer",
-      "provider": "local"
+      "passwordSalt": "5b4dfbc655c9b0883dfa806e4755ad45",
+      "passwordHash": "pbkdf2-sha256$100000$8598af39153d9f4174a7480c11eab9deae7c4c1b7943a7c73ede3b0f1cafdb6d"
     }
   ],
   "dishes": [
-    {
-      "id": "firfir",
-      "slug": "firfir",
-      "name": "Firfir",
-      "description": "jvnjnjvnfjn  jnvjnvjsdnvjn  mnkndln  n jdnvjdnvjn mnkvndlkmvlkd",
-      "ingredients": [],
-      "category": "Ethiopian",
-      "price": 345,
-      "image": "https://i.pinimg.com/736x/c8/7f/f4/c87ff49acf77764ebdf7d81be8da0fa8.jpg",
-      "tags": [],
-      "spicy": false,
-      "vegetarian": false,
-      "popular": false,
-      "prepMinutes": 20,
-      "rating": 0,
-      "available": true,
-      "discountPercent": 0
-    },
-    {
-      "id": "whiskey",
-      "slug": "whiskey",
-      "name": "Whiskey",
-      "description": "High Alcohol containet drink",
-      "ingredients": [],
-      "category": "Drinks",
-      "price": 320,
-      "image": "https://i.pinimg.com/1200x/4b/e2/51/4be2516064dc72cdaa924a9afb36750a.jpg",
-      "tags": [],
-      "spicy": false,
-      "vegetarian": false,
-      "popular": false,
-      "prepMinutes": 20,
-      "rating": 0,
-      "available": true,
-      "discountPercent": 0
-    },
-    {
-      "id": "bulla",
-      "slug": "bulla",
-      "name": "Bulla",
-      "description": "Exprience ethiopian culture",
-      "ingredients": [],
-      "category": "Ethiopian",
-      "price": 450,
-      "image": "https://i.pinimg.com/736x/b4/7e/4b/b47e4b3c9db8226ea914f4cf6c30f782.jpg",
-      "tags": [],
-      "spicy": false,
-      "vegetarian": false,
-      "popular": false,
-      "prepMinutes": 20,
-      "rating": 0,
-      "available": true,
-      "marketingLine": "Easterv Festival 2 week discount",
-      "discountPercent": 0
-    },
     {
       "id": "doro-wat",
       "slug": "doro-wat",
@@ -200,7 +127,8 @@
       "prepMinutes": 35,
       "rating": 4.8,
       "available": true,
-      "discountPercent": 0
+      "marketingLine": "Chef Helina's 6-hour simmer — this weekend only!",
+      "discountPercent": 15
     },
     {
       "id": "sega-tibs",
@@ -216,7 +144,7 @@
       ],
       "category": "Ethiopian",
       "price": 350,
-      "image": "https://i.pinimg.com/1200x/8a/92/33/8a923316cc8327e5414ede71c446bc12.jpg",
+      "image": "https://images.unsplash.com/photo-1544025162-d76694265947?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "sizzling"
       ],
@@ -225,8 +153,7 @@
       "popular": true,
       "prepMinutes": 30,
       "rating": 4.8,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     },
     {
       "id": "kitfo",
@@ -241,7 +168,7 @@
       ],
       "category": "Ethiopian",
       "price": 380,
-      "image": "https://i.pinimg.com/736x/2c/c6/44/2cc6449207cf8b2a3e18af61740e51d2.jpg",
+      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "signature"
       ],
@@ -250,8 +177,7 @@
       "popular": false,
       "prepMinutes": 25,
       "rating": 4.7,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     },
     {
       "id": "shiro-wat",
@@ -266,7 +192,7 @@
       ],
       "category": "Ethiopian",
       "price": 190,
-      "image": "https://i.pinimg.com/1200x/b3/40/82/b34082f3d2cfd7ca9093abfab298232a.jpg",
+      "image": "https://images.unsplash.com/photo-1547592166-23ac45744acd?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "vegetarian"
       ],
@@ -275,8 +201,7 @@
       "popular": false,
       "prepMinutes": 20,
       "rating": 4.6,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     },
     {
       "id": "beyainatu",
@@ -292,7 +217,7 @@
       ],
       "category": "Ethiopian",
       "price": 240,
-      "image": "https://i.pinimg.com/736x/8a/20/a8/8a20a88b8e505224cc8d995ce6ae7792.jpg",
+      "image": "https://images.unsplash.com/photo-1512058564366-18510be2db19?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "platter"
       ],
@@ -301,8 +226,7 @@
       "popular": false,
       "prepMinutes": 30,
       "rating": 4.7,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     },
     {
       "id": "margherita",
@@ -317,7 +241,7 @@
       ],
       "category": "Pizza",
       "price": 280,
-      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "pizza"
       ],
@@ -341,7 +265,7 @@
       ],
       "category": "Pizza",
       "price": 350,
-      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "fusion"
       ],
@@ -350,7 +274,8 @@
       "popular": true,
       "prepMinutes": 30,
       "rating": 4.7,
-      "available": true
+      "available": true,
+      "discountPercent": 10
     },
     {
       "id": "cheeseburger",
@@ -366,7 +291,7 @@
       ],
       "category": "Burgers",
       "price": 260,
-      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "grill"
       ],
@@ -390,7 +315,7 @@
       ],
       "category": "Burgers",
       "price": 310,
-      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "fusion"
       ],
@@ -412,7 +337,7 @@
       ],
       "category": "Drinks",
       "price": 90,
-      "image": "https://images.unsplash.com/photo-1546173159-315724a31696?q=80&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1546173159-315724a31696?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "fresh"
       ],
@@ -434,7 +359,7 @@
       ],
       "category": "Drinks",
       "price": 60,
-      "image": "https://i.pinimg.com/736x/2f/ae/ae/2faeaedfffb74037dcc593a6fd0d92ba.jpg",
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "coffee"
       ],
@@ -443,8 +368,7 @@
       "popular": true,
       "prepMinutes": 8,
       "rating": 4.9,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     },
     {
       "id": "tej",
@@ -457,7 +381,7 @@
       ],
       "category": "Drinks",
       "price": 120,
-      "image": "https://i.pinimg.com/1200x/c8/e7/de/c8e7de445af9e63a12620c206a324c5e.jpg",
+      "image": "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "traditional"
       ],
@@ -466,100 +390,23 @@
       "popular": false,
       "prepMinutes": 3,
       "rating": 4.3,
-      "available": true,
-      "discountPercent": 0
+      "available": true
     }
   ],
   "orders": [
     {
-      "id": "ord_904",
-      "userId": "u_muzublsl",
-      "items": [
-        {
-          "dishId": "bulla",
-          "qty": 2,
-          "unitPrice": 450
-        },
-        {
-          "dishId": "whiskey",
-          "qty": 1,
-          "unitPrice": 320
-        },
-        {
-          "dishId": "doro-wat",
-          "qty": 1,
-          "unitPrice": 320
-        }
-      ],
-      "zone": "Piassa",
-      "fee": 50,
-      "etaMin": 35,
-      "etaMax": 50,
-      "contact": {
-        "name": "Mathias Berhanu",
-        "phone": "+251911234567"
-      },
-      "status": "delivered",
-      "placedAt": "2026-10-11T15:04:28.721Z",
-      "events": [
-        {
-          "at": "2026-10-11T15:04:28.721Z",
-          "status": "pending"
-        },
-        {
-          "at": "2026-10-11T15:06:34.792Z",
-          "status": "preparing"
-        },
-        {
-          "at": "2026-10-11T15:19:23.336Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-11T15:19:28.076Z",
-          "status": "delivered"
-        }
-      ]
-    },
-    {
-      "id": "ord_903",
-      "userId": "u_dawit",
+      "id": "ord_900",
+      "userId": "u_kitchen",
       "items": [
         {
           "dishId": "sega-tibs",
           "qty": 1,
           "unitPrice": 350
-        }
-      ],
-      "zone": "Kazanchis",
-      "fee": 35,
-      "etaMin": 30,
-      "etaMax": 40,
-      "contact": {
-        "name": "Dawit Alemu",
-        "phone": "+251912345678"
-      },
-      "status": "pending",
-      "placedAt": "2026-10-09T04:57:46.952Z",
-      "events": [
-        {
-          "at": "2026-10-09T04:57:46.952Z",
-          "status": "pending"
-        }
-      ]
-    },
-    {
-      "id": "ord_902",
-      "userId": "u_selam",
-      "items": [
+        },
         {
           "dishId": "doro-wat",
           "qty": 1,
-          "unitPrice": 320
-        },
-        {
-          "dishId": "tej",
-          "qty": 1,
-          "unitPrice": 120
+          "unitPrice": 272
         }
       ],
       "zone": "Bole",
@@ -567,108 +414,15 @@
       "etaMin": 25,
       "etaMax": 35,
       "contact": {
-        "name": "Selam Bekele",
-        "phone": "+251911234567"
+        "name": "Kitchen Staff",
+        "phone": "0978787545"
       },
       "status": "pending",
-      "placedAt": "2026-10-08T13:51:25.932Z",
+      "placedAt": "2026-10-11T17:01:48.074Z",
       "events": [
         {
-          "at": "2026-10-08T13:51:25.932Z",
+          "at": "2026-10-11T17:01:48.074Z",
           "status": "pending"
-        }
-      ]
-    },
-    {
-      "id": "ord_901",
-      "userId": "u_selam",
-      "items": [
-        {
-          "dishId": "bulla",
-          "qty": 1,
-          "unitPrice": 450
-        },
-        {
-          "dishId": "doro-wat",
-          "qty": 1,
-          "unitPrice": 320
-        },
-        {
-          "dishId": "shiro-wat",
-          "qty": 1,
-          "unitPrice": 190
-        },
-        {
-          "dishId": "kitfo",
-          "qty": 1,
-          "unitPrice": 380
-        }
-      ],
-      "zone": "Bole",
-      "fee": 40,
-      "etaMin": 25,
-      "etaMax": 35,
-      "contact": {
-        "name": "Selam Bekele",
-        "phone": "+251911234567"
-      },
-      "status": "delivered",
-      "placedAt": "2026-10-08T13:26:37.470Z",
-      "events": [
-        {
-          "at": "2026-10-08T13:26:37.470Z",
-          "status": "pending"
-        },
-        {
-          "at": "2026-10-08T13:27:39.629Z",
-          "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T13:27:42.315Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T13:27:45.182Z",
-          "status": "delivered"
-        }
-      ]
-    },
-    {
-      "id": "ord_900",
-      "userId": "u_dawit",
-      "items": [
-        {
-          "dishId": "doro-wat",
-          "qty": 1,
-          "unitPrice": 320
-        }
-      ],
-      "zone": "Kazanchis",
-      "fee": 35,
-      "etaMin": 30,
-      "etaMax": 40,
-      "contact": {
-        "name": "Dawit Alemu",
-        "phone": "+251912345678"
-      },
-      "status": "delivered",
-      "placedAt": "2026-10-08T11:46:18.584Z",
-      "events": [
-        {
-          "at": "2026-10-08T11:46:18.584Z",
-          "status": "pending"
-        },
-        {
-          "at": "2026-10-08T12:13:37.433Z",
-          "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T12:14:05.818Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:14:09.566Z",
-          "status": "delivered"
         }
       ]
     },
@@ -807,7 +561,12 @@
       "fee": 35,
       "etaMin": 30,
       "etaMax": 40,
-      "status": "delivered",
+      "status": "delivering",
+      "deliveringAt": "2025-06-12T10:12:00Z",
+      "courier": {
+        "name": "Courier Abebe",
+        "phone": "+251 91 700 0001"
+      },
       "placedAt": "2025-06-12T09:48:00Z",
       "events": [
         {
@@ -821,10 +580,6 @@
         {
           "at": "2025-06-12T10:12:00Z",
           "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:14:02.327Z",
-          "status": "delivered"
         }
       ]
     },
@@ -848,24 +603,12 @@
       "etaMin": 25,
       "etaMax": 35,
       "note": "Extra awaze on the side, please.",
-      "status": "delivered",
+      "status": "pending",
       "placedAt": "2025-06-12T11:32:00Z",
       "events": [
         {
           "at": "2025-06-12T11:32:00Z",
           "status": "pending"
-        },
-        {
-          "at": "2026-10-08T12:42:58.065Z",
-          "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T12:42:59.982Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:43:03.090Z",
-          "status": "delivered"
         }
       ]
     },
@@ -888,7 +631,7 @@
       "fee": 50,
       "etaMin": 35,
       "etaMax": 50,
-      "status": "delivered",
+      "status": "preparing",
       "placedAt": "2025-06-12T10:05:00Z",
       "events": [
         {
@@ -898,14 +641,6 @@
         {
           "at": "2025-06-12T10:21:00Z",
           "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T12:43:01.664Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:43:04.549Z",
-          "status": "delivered"
         }
       ]
     },
@@ -929,24 +664,12 @@
       "etaMin": 30,
       "etaMax": 40,
       "note": "Ring the bell twice.",
-      "status": "delivered",
+      "status": "pending",
       "placedAt": "2025-06-12T11:58:00Z",
       "events": [
         {
           "at": "2025-06-12T11:58:00Z",
           "status": "pending"
-        },
-        {
-          "at": "2026-10-08T12:42:45.004Z",
-          "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T12:42:48.509Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:42:51.714Z",
-          "status": "delivered"
         }
       ]
     },
@@ -969,7 +692,7 @@
       "fee": 40,
       "etaMin": 25,
       "etaMax": 35,
-      "status": "delivered",
+      "status": "preparing",
       "placedAt": "2025-06-12T10:40:00Z",
       "events": [
         {
@@ -979,61 +702,54 @@
         {
           "at": "2025-06-12T10:52:00Z",
           "status": "preparing"
-        },
-        {
-          "at": "2026-10-08T12:43:07.337Z",
-          "status": "delivering"
-        },
-        {
-          "at": "2026-10-08T12:43:09.181Z",
-          "status": "delivered"
         }
       ]
     }
   ],
   "favorites": [
     {
+      "userId": "u_selam",
+      "dishId": "doro-wat",
+      "at": "2025-06-10T18:00:00Z"
+    },
+    {
+      "userId": "u_selam",
+      "dishId": "kitfo",
+      "at": "2025-06-11T19:00:00Z"
+    },
+    {
       "userId": "u_dawit",
       "dishId": "doro-wat",
-      "at": "2026-10-08T11:46:33.987Z"
+      "at": "2025-06-11T12:00:00Z"
     },
     {
       "userId": "u_dawit",
       "dishId": "sega-tibs",
-      "at": "2026-10-08T11:46:35.716Z"
-    },
-    {
-      "userId": "u_muzublsl",
-      "dishId": "whiskey",
-      "at": "2026-10-11T15:20:02.486Z"
-    },
-    {
-      "userId": "u_muzublsl",
-      "dishId": "firfir",
-      "at": "2026-10-11T15:20:03.837Z"
+      "at": "2025-06-12T09:00:00Z"
     }
   ],
   "announcements": [
     {
-      "id": "ann_muzpm28w",
+      "id": "ann_fasika",
       "message": "Fasika festival - 35% meat discount",
+      "href": "/menu?category=Ethiopian",
       "tone": "festival",
       "active": true
     },
     {
-      "id": "ann_1",
+      "id": "ann_timket",
       "message": "Timket week — free buna with every Ethiopian platter 🎉",
       "href": "/menu?category=Ethiopian",
       "tone": "festival",
-      "active": false
+      "active": true
     }
   ],
   "loginActivity": [
     {
-      "id": "act_mv3z11it_lq05",
-      "at": "2026-10-11T15:21:36.245Z",
-      "email": "mathiasberhanu1@gmail.com",
-      "userId": "u_muzublsl",
+      "id": "act_mv42knnm_2o2b",
+      "at": "2026-10-11T17:00:50.243Z",
+      "email": "kitchen@demo.et",
+      "userId": "u_kitchen",
       "outcome": "success"
     }
   ]

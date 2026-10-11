@@ -2,25 +2,18 @@ import dbData from '@/data/db.json';
 import type { Order, OrderStatus } from '@/lib/types';
 import { persistDbDev } from '@/lib/persist-dev';
 import { readState, saveState } from '@/lib/persist-store';
+import { courierFor } from '@/lib/tracking';
 
 /**
  * Order store — seeded once per server process from db.json (the single
- * data source). Everything the app knows about orders lives here:
- *
- * - scoped reads (AUTH.md: no unscoped per-user order query exists)
- * - a data-derived id counter + insert-time collision guard (the
- *   duplicate-ord_900 fix: restarts can never re-issue a persisted id)
- * - persistence: dev → written back into db.json (persistDbDev) so order
- *   history survives dev restarts; production → mirrored into the /tmp
- *   warm-cache (persist-store) for the instance lifetime (documented in
- *   docs/DATA.md — cold starts reset to the committed seed)
- * - the public ordered-counts aggregate (ordered ×N, ?sort=loved)
+ * data source). Scoped reads (AUTH.md), data-derived id counter with an
+ * insert-time collision guard, dev write-back into db.json, production
+ * /tmp warm-cache rehydration, the ordered-counts aggregate, and dispatch
+ * metadata (deliveringAt + courier) that drives the live tracking map.
  */
 const orders = (dbData as unknown as { orders: Order[] }).orders.map((o) => structuredClone(o));
 
-// ── production warm-cache rehydration ─────────────────────────────────
-// On a cold start, restore orders saved by previous warm instances (best
-// effort: /tmp is per-instance and cleared on deploys — documented tradeoff).
+// production warm-cache rehydration (documented serverless tradeoff)
 const cached = readState() as { orders?: Order[] };
 if (cached.orders?.length) {
   const seededIds = new Set(orders.map((o) => o.id));
@@ -29,9 +22,7 @@ if (cached.orders?.length) {
   }
 }
 
-// ── id counter: derived from the data, with a demo floor ──────────────
 const ORDER_ID_FLOOR = 900;
-
 const seededMax = orders.reduce((max, order) => {
   const match = /^ord_(\d+)$/.exec(order.id);
   return match ? Math.max(max, Number(match[1])) : max;
@@ -58,8 +49,7 @@ export const getOrderFor = (userId: string, orderId: string) =>
 /** Kitchen only — callers must verify role BEFORE and INSIDE their actions. */
 export const getAllOrders = () => orders;
 
-/** Public aggregate — units ordered per dish, cancelled excluded. A count
- *  leaks nothing personal. Feeds "ordered ×N" on cards and ?sort=loved. */
+/** Public aggregate — units ordered per dish, cancelled excluded. */
 export const getOrderCountsByDish = (): Record<string, number> => {
   const counts: Record<string, number> = {};
   for (const order of orders) {
@@ -70,8 +60,6 @@ export const getOrderCountsByDish = (): Record<string, number> => {
 };
 
 export function insertOrder(order: Order): void {
-  // Defense in depth: an id collision can never enter the store. The caller
-  // reads order.id after this call, so any bump stays truthful.
   while (orders.some((o) => o.id === order.id)) {
     order.id = `ord_${nextSeq++}`;
   }
@@ -83,6 +71,12 @@ export function setOrderStatus(orderId: string, status: OrderStatus): Order | nu
   const order = orders.find((o) => o.id === orderId);
   if (!order) return null;
   order.status = status;
+  // Dispatch metadata — drives the live tracking map (position is derived,
+  // never stored; only the dispatch timestamp and courier identity are).
+  if (status === 'delivering') {
+    if (!order.deliveringAt) order.deliveringAt = new Date().toISOString();
+    order.courier = courierFor(order);
+  }
   order.events.push({ at: new Date().toISOString(), status });
   persistOrders();
   return order;

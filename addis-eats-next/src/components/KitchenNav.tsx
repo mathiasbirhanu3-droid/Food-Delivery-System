@@ -4,6 +4,7 @@ const items: { href: string; label: string; exact: boolean }[] = [
   { href: '/kitchen', label: 'Orders', exact: true },
   { href: '/kitchen/menu', label: 'Menu manager', exact: false },
   { href: '/kitchen/announcements', label: 'Announcements', exact: false },
+  { href: '/kitchen/activity', label: 'Login activity', exact: false },
 ];
 
 export default function KitchenNav({ current }: { current: string }) {
