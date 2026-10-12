@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <BottomNav />
         </CartProvider>
 
-        {/* Demo bridge for the attacks — outside CartProvider on purpose. */}
+        {/* Demo bridge for the three attacks — outside CartProvider on purpose. */}
         <AttackBridge />
       </body>
     </html>
