@@ -100,6 +100,13 @@
       "defaultZone": "Bole",
       "passwordSalt": "5b4dfbc655c9b0883dfa806e4755ad45",
       "passwordHash": "pbkdf2-sha256$100000$8598af39153d9f4174a7480c11eab9deae7c4c1b7943a7c73ede3b0f1cafdb6d"
+    },
+    {
+      "id": "u_mv4vhayq",
+      "email": "mathiasbirhanu89@gmail.com",
+      "name": "Mathias Birhanu",
+      "role": "customer",
+      "provider": "google"
     }
   ],
   "dishes": [
