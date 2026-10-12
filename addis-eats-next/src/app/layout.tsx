@@ -4,18 +4,16 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BottomNav from '@/components/BottomNav';
-import { CartProvider } from '@/features/cart/cart-store';
-import CartBar from '@/features/cart/CartBar';
-import AttackBridge from '@/features/orders/AttackBridge';
 import AnnouncementBar from '@/components/AnnouncementBar';
+import { CartProvider } from '@/features/cart/cart-store';
+import AttackBridge from '@/features/orders/AttackBridge';
+import { SITE_URL } from '@/lib/site-url';
 
 const display = Outfit({ subsets: ['latin'], variable: '--font-display', display: 'swap' });
 const body = Inter({ subsets: ['latin'], variable: '--font-body', display: 'swap' });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: 'Addis Eats — Ethiopian food, delivered in Addis Ababa',
     template: '%s — Addis Eats',
@@ -25,6 +23,7 @@ export const metadata: Metadata = {
   openGraph: { type: 'website', siteName: 'Addis Eats' },
 };
 
+// Feature 22 — theme applied before paint; no flash of the wrong theme.
 const themeScript = `(function(){try{var t=localStorage.getItem('addis_eats_theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -42,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
 
           <Header />
+
           <AnnouncementBar />
 
           <main id="main" className="min-h-[70vh] pb-16 sm:pb-0">
@@ -50,9 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
           <BottomNav />
-          <CartBar />
         </CartProvider>
 
+        {/* Demo bridge for the attacks — outside CartProvider on purpose. */}
         <AttackBridge />
       </body>
     </html>
