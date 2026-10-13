@@ -60,6 +60,7 @@ export default async function OrdersPage() {
                 price: dish?.price ?? item.unitPrice,
                 image: dish?.image ?? '',
                 qty: item.qty,
+                available: dish?.available ?? false,   // missing dish = unavailable
               };
             });
             return (
@@ -69,7 +70,8 @@ export default async function OrdersPage() {
                     <Link href={`/orders/${order.id}`} className="min-w-0">
                       <p className="font-semibold">{order.id}</p>
                       <p className="text-sm text-ink/50 dark:text-cream/50">
-                        {order.items.length} item{order.items.length > 1 ? 's' : ''} · {order.zone}
+                        {new Date(order.placedAt).toLocaleString()} · {order.items.length} item
+                        {order.items.length > 1 ? 's' : ''}
                       </p>
                     </Link>
                     <div className="flex shrink-0 items-center gap-3">
@@ -77,14 +79,11 @@ export default async function OrdersPage() {
                       <span className="font-semibold">{formatETB(total)}</span>
                     </div>
                   </div>
-                  <div className="mt-3 flex items-center justify-end gap-3 border-t border-ink/5 pt-3 dark:border-cream/5">
+                  <div className="mt-3 flex flex-wrap items-center justify-between gap-3 border-t border-ink/5 pt-3 dark:border-cream/5">
+                    <span className="text-xs text-ink/50 dark:text-cream/50">
+                      {order.zone} · {formatETB(order.fee)} delivery
+                    </span>
                     <ReorderButton items={items} />
-                    <Link
-                      href={`/orders/${order.id}/track`}
-                      className="rounded-full border border-ink/15 px-4 py-1.5 text-xs font-semibold hover:border-primary hover:text-primary dark:border-cream/20"
-                    >
-                      🛵 Track
-                    </Link>
                   </div>
                 </div>
               </li>

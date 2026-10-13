@@ -9,9 +9,14 @@
 
   body {
     @apply bg-cream font-body text-ink dark:bg-ink dark:text-cream;
+    /* Kill page-level horizontal sliding — overflowing rows (category
+       chips, marquee) scroll within their own lanes, never the page. */
+    overflow-x: hidden;
   }
 
-  /* Feature 25 — keyboard accessibility: visible focus rings everywhere. */
+  /* Feature 25 — keyboard accessibility: every interactive element shows a
+     visible focus ring. These @apply lines require the custom tokens
+     (cream, accent, font-body) defined in tailwind.config.ts. */
   :focus-visible {
     @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-cream dark:ring-offset-ink;
   }
@@ -19,6 +24,8 @@
 
 /* ── Announcement strip — CSS-only motion ──────────────────────────── */
 
+/* Fade masks at both edges: items glide in from off-screen instead of
+   hard-clipping — this is what fixes the "starts at the edge" look. */
 .marquee-viewport {
   overflow: hidden;
   padding-left: 88px; /* clears the label pill */
@@ -53,6 +60,7 @@
   animation-play-state: paused;
 }
 
+/* Slow sheen sweep across the whole strip. */
 .strip-sheen {
   position: absolute;
   inset: 0;
@@ -67,6 +75,7 @@
   animation: sheen-sweep 7s ease-in-out infinite;
 }
 
+/* Motion is a garnish: static, readable, honest under reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .strip-sheen {
@@ -100,7 +109,7 @@
   transition: transform 2.4s linear;
 }
 
-/* dark-mode tiles — the standard filter trick */
+/* dark-mode tiles — the standard filter trick, keeps the map readable */
 .dark .leaflet-tile-pane {
   filter: brightness(0.6) invert(1) contrast(2.2) hue-rotate(185deg) saturate(0.4) brightness(0.85);
 }

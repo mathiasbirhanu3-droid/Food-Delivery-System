@@ -15,10 +15,8 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const restaurant = getRestaurant();
-  const special = getSpecialOfDay(); // null when none is set
-  const specials = special
-    ? [special]
-    : getDishes().filter((d) => d.popular).slice(0, 3); // Day 35 fallback: popular dishes
+  const special = getSpecialOfDay();
+  const specials = special ? [special] : getDishes().filter((d) => d.popular).slice(0, 3);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -40,7 +38,6 @@ export default async function HomePage() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      {/* hero — unchanged */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:py-28">
         <p className="text-sm font-bold uppercase tracking-widest text-accent">Bole · Addis Ababa</p>
         <h1 className="mt-3 max-w-2xl font-display text-4xl font-bold leading-tight sm:text-6xl">
@@ -60,7 +57,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── Special of the Day — admin-controlled hero ── */}
       {special && (
         <section className="mx-auto max-w-6xl px-4 pb-14" aria-label="Special of the day">
           <div className="overflow-hidden rounded-3xl border border-accent/30 bg-gradient-to-r from-accent/10 via-gold/10 to-transparent shadow-card">
@@ -109,7 +105,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      {/* Today's specials — the special dish, or the popular fallback */}
       <section className="mx-auto max-w-6xl px-4 pb-16">
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-2xl font-bold">Today&apos;s specials</h2>
@@ -117,7 +112,7 @@ export default async function HomePage() {
             See the full menu →
           </Link>
         </div>
-        <ul className="mt-6 grid gap-5 sm:grid-cols-3">
+        <ul className="mt-6 grid gap-x-6 gap-y-8 sm:grid-cols-3">
           {specials.map((dish, index) => (
             <li key={dish.id}>
               <DishCard dish={dish} priority={index === 0} />

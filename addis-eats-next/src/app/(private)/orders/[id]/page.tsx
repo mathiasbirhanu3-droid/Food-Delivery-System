@@ -3,9 +3,11 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getDish, getOrderFor } from '@/lib/db';
 import { formatETB } from '@/lib/format';
+import { priceOf } from '@/lib/pricing';
 import OrderStatusLive from '@/features/orders/OrderStatusLive';
 import CancelOrderButton from '@/features/orders/CancelOrderButton';
 import ReorderButton from '@/features/orders/ReorderButton';
+import OutOfStock from '@/features/menu/OutOfStock';
 import { requireSession } from '@/features/auth/guards';
 
 export const metadata: Metadata = { title: 'Order detail', robots: { index: false } };
@@ -31,6 +33,7 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
       price: dish?.price ?? item.unitPrice,
       image: dish?.image ?? '',
       qty: item.qty,
+      available: dish?.available ?? false,
     };
   });
 
@@ -57,7 +60,10 @@ export default async function OrderDetailPage({ params }: { params: Promise<{ id
         {lines.map(({ dish, qty, unitPrice }) => (
           <li key={dish?.id ?? unitPrice} className="flex items-center justify-between p-4">
             <span className="font-medium">{qty} × {dish?.name ?? 'Item'}</span>
-            <span>{formatETB(qty * unitPrice)}</span>
+            <span className="flex items-center gap-2">
+              {!dish?.available && dish && <OutOfStock compact />}
+              <span>{formatETB(qty * unitPrice)}</span>
+            </span>
           </li>
         ))}
         <li className="flex items-center justify-between p-4 font-bold">

@@ -22,7 +22,6 @@ export default async function MenuPage({
 
   const all = getDishes();
 
-  // live counts for the sidebar — computed from the single data source
   const counts: Record<string, number> = { all: all.length };
   for (const c of CATEGORIES) counts[c] = all.filter((d) => d.category === c).length;
 
@@ -53,16 +52,14 @@ export default async function MenuPage({
         </p>
       </header>
 
-      {/* left column: categories (sticky on desktop, chips on mobile) */}
       <div className="mt-6 flex flex-col gap-6 lg:flex-row">
         <aside className="self-start lg:sticky lg:top-24 lg:w-56 lg:shrink-0">
           <CategoryBar active={active} sort={sort} counts={counts} />
         </aside>
 
-        {/* right column: search + dish grid */}
         <div className="min-w-0 flex-1">
           <MenuSearch category={active ?? ''}>
-            <ul className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            <ul className="grid gap-x-6 gap-y-8 sm:grid-cols-2 xl:grid-cols-3">
               {dishes.map((dish, index) => (
                 <li key={dish.id}>
                   <DishCard dish={dish} priority={index < 3} />

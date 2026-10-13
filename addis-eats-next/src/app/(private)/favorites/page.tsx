@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default async function FavoritesPage() {
-  // Layer 2 — favorites are per-account now, so the page is private.
+  // Layer 2 — favorites are per-account, so the page is private.
   const session = await requireSession('/favorites');
 
   const items = getFavoritesFor(session.userId)
@@ -18,11 +18,20 @@ export default async function FavoritesPage() {
       const dish = getDish(dishId);
       if (!dish) return null;
       return {
-        id: dish.id, name: dish.name, price: dish.price, image: dish.image,
-        description: dish.description, favCount: getFavoriteCounts()[dish.id] ?? 0,
+        id: dish.id,
+        name: dish.name,
+        price: priceResolved(dish),
+        image: dish.image,
+        description: dish.description,
+        favCount: getFavoriteCounts()[dish.id] ?? 0,
+        available: dish.available,
       };
     })
     .filter((item) => item !== null);
+
+  function priceResolved(dish: NonNullable<ReturnType<typeof getDish>>) {
+    return dish.price; // list price for the wishlist display; AddToCart passes it to the cart
+  }
 
   return <FavoritesViewList items={items} />;
 }

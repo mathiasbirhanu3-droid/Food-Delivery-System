@@ -44,7 +44,7 @@ export default async function DishPage({
   const dish = getDish(id);
   if (!dish) notFound();
 
-  // ── Social proof, computed server-side (no client fetch, no hydration cost) ──
+  // ── Social proof, computed server-side ──
   const session = await getSession();
   const favCount = getFavoriteCounts()[dish.id] ?? 0;
   const orderedCount = getOrderCountsByDish()[dish.id] ?? 0;
@@ -53,7 +53,6 @@ export default async function DishPage({
   const { original, final, discountPercent } = priceOf(dish);
   const discounted = discountPercent > 0;
 
-  // JSON-LD must match what the page actually shows (Day 44 rule).
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MenuItem',
@@ -85,7 +84,6 @@ export default async function DishPage({
           sizes="(max-width: 1024px) 100vw, 896px"
           className="object-cover"
         />
-        {/* ── badges: special / popular / discount ── */}
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           {dish.specialOfDay && (
             <span className="rounded-full bg-accent px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow">
@@ -116,6 +114,15 @@ export default async function DishPage({
           <span className="font-display text-3xl font-bold text-primary">{formatETB(final)}</span>
         </span>
       </div>
+
+      {!dish.available && (
+        <p
+          role="status"
+          className="mt-3 rounded-xl bg-ink/10 p-3 text-sm font-semibold text-ink/60 dark:bg-cream/10 dark:text-cream/60"
+        >
+          This dish is currently out of stock.
+        </p>
+      )}
 
       {dish.marketingLine && (
         <p className="mt-3 rounded-xl bg-gold/15 px-4 py-2 text-sm font-semibold text-ink dark:text-cream">
@@ -156,7 +163,10 @@ export default async function DishPage({
 
       <div className="mt-8 flex flex-wrap items-center gap-4">
         <FavoriteButton dishId={dish.id} seedFavorited={seedFavorited} seedCount={favCount} />
-        <AddToCart dish={{ id: dish.id, name: dish.name, price: final, image: dish.image }} />
+        <AddToCart
+          dish={{ id: dish.id, name: dish.name, price: final, image: dish.image }}
+          available={dish.available}
+        />
         <span className="text-sm text-ink/50 dark:text-cream/50">
           ★ {dish.rating} · {dish.prepMinutes} min prep
         </span>
