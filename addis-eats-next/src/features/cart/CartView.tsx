@@ -15,8 +15,6 @@ export default function CartView() {
   const [staleNotice, setStaleNotice] = useState('');
 
   // Self-heal: on mount, compare cart lines against the live dish list.
-  // Missing or unavailable dishes are removed and announced — the checkout
-  // write would refuse them anyway (server re-prices from db.json).
   useEffect(() => {
     if (!hydrated || lines.length === 0) return;
     let cancelled = false;
@@ -59,31 +57,66 @@ export default function CartView() {
       <h1 className="font-display text-3xl font-bold">Your cart</h1>
 
       {staleNotice && (
-        <p role="alert" className="mt-4 rounded-xl bg-gold/20 p-3 text-sm font-medium">
-          {staleNotice}
-        </p>
+        <p role="alert" className="mt-4 rounded-xl bg-gold/20 p-3 text-sm font-medium">{staleNotice}</p>
       )}
 
       <ul className="mt-8 space-y-3">
         {lines.map((line) => (
-          <li key={line.id} className="flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-3 dark:border-cream/10 dark:bg-white/5">
-            <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-primary-50 dark:bg-primary-900/40">
-              <Image src={line.image} alt="" fill sizes="64px" className="object-cover" />
+          <li
+            key={line.id}
+            className="rounded-2xl border border-ink/10 bg-white p-3 dark:border-cream/10 dark:bg-white/5"
+          >
+            {/* ── line 1: image + name/price ── */}
+            <div className="flex items-center gap-3">
+              <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-primary-50 dark:bg-primary-900/40">
+                <Image src={line.image} alt="" fill sizes="64px" className="object-cover" />
+              </div>
+              <div className="min-w-0 flex-1">
+                <p className="truncate font-semibold">{line.name}</p>
+                <p className="text-sm text-ink/50 dark:text-cream/50">{formatETB(line.price)} each</p>
+              </div>
+              {/* line total — right-aligned, never overlaps: it lives on line 1 */}
+              <span className="shrink-0 text-right font-semibold">{formatETB(line.qty * line.price)}</span>
+              <button
+                type="button"
+                onClick={() => remove(line.id)}
+                aria-label={`Remove ${line.name}`}
+                className="shrink-0 self-start text-ink/40 hover:text-accent dark:text-cream/40"
+              >
+                ✕
+              </button>
             </div>
-            <div className="min-w-0 flex-1">
-              <p className="truncate font-semibold">{line.name}</p>
-              <p className="text-sm text-ink/50 dark:text-cream/50">{formatETB(line.price)} each</p>
+
+            {/* ── line 2: the stepper, full-width row below — no overlap possible ── */}
+            <div className="mt-3 flex items-center justify-between border-t border-ink/5 pt-3 dark:border-cream/5">
+              <div
+                className="flex items-center gap-3"
+                role="group"
+                aria-label={`Quantity for ${line.name}`}
+              >
+                <button
+                  type="button"
+                  onClick={() => decrement(line.id)}
+                  aria-label={`Decrease ${line.name}`}
+                  className="h-9 w-9 rounded-full border border-ink/15 font-bold hover:border-primary dark:border-cream/20"
+                >
+                  −
+                </button>
+                <span className="min-w-6 text-center font-semibold" aria-live="polite">
+                  {line.qty}
+                </span>
+                <button
+                  type="button"
+                  onClick={() => increment(line.id)}
+                  aria-label={`Increase ${line.name}`}
+                  className="h-9 w-9 rounded-full border border-ink/15 font-bold hover:border-primary dark:border-cream/20"
+                >
+                  +
+                </button>
+              </div>
+              {/* line-total on mobile appears here too — cleaner balance */}
+              <span className="font-semibold sm:hidden">{formatETB(line.qty * line.price)}</span>
             </div>
-            <div className="flex items-center gap-2" role="group" aria-label={`Quantity for ${line.name}`}>
-              <button type="button" onClick={() => decrement(line.id)} aria-label={`Decrease ${line.name}`}
-                className="h-8 w-8 rounded-full border border-ink/15 font-bold hover:border-primary dark:border-cream/20">−</button>
-              <span className="w-6 text-center font-semibold" aria-live="polite">{line.qty}</span>
-              <button type="button" onClick={() => increment(line.id)} aria-label={`Increase ${line.name}`}
-                className="h-8 w-8 rounded-full border border-ink/15 font-bold hover:border-primary dark:border-cream/20">+</button>
-            </div>
-            <span className="w-20 text-right font-semibold">{formatETB(line.qty * line.price)}</span>
-            <button type="button" onClick={() => remove(line.id)} aria-label={`Remove ${line.name}`}
-              className="text-ink/40 hover:text-accent dark:text-cream/40">✕</button>
           </li>
         ))}
       </ul>
@@ -92,13 +125,22 @@ export default function CartView() {
         <span className="font-medium">Subtotal</span>
         <span className="font-display text-xl font-bold text-primary" aria-live="polite">{formatETB(subtotal)}</span>
       </div>
-      <p className="mt-2 text-sm text-ink/50 dark:text-cream/50">Delivery fee and estimated time are calculated at checkout from your area.</p>
+      <p className="mt-2 text-sm text-ink/50 dark:text-cream/50">
+        Delivery fee and estimated time are calculated at checkout from your area.
+      </p>
 
-      <Link href="/checkout" className="mt-6 block rounded-full bg-primary py-3 text-center font-semibold text-white hover:bg-primary-600">
+      <Link
+        href="/checkout"
+        className="mt-6 block rounded-full bg-primary py-3 text-center font-semibold text-white hover:bg-primary-600"
+      >
         Continue to checkout
       </Link>
 
-      <button type="button" onClick={clear} className="mt-3 block w-full text-center text-sm text-ink/50 hover:text-accent dark:text-cream/50">
+      <button
+        type="button"
+        onClick={clear}
+        className="mt-3 block w-full text-center text-sm text-ink/50 hover:text-accent dark:text-cream/50"
+      >
         Clear cart
       </button>
     </section>
