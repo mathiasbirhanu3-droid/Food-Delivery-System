@@ -1,37 +1,35 @@
-Addis Eats — Week 9 Next.js Advanced Project
-Ethiopian food ordering in Addis Ababa. Next.js App Router · one JSON datasource · three-layer protection · live order status · full metadata.
+File: README.md (project root — beside package.json)
 
-Deployed URL: add after the first deploy — required deliverable
+Addis Eats — Food Ordering for Addis Ababa
+A full-stack food-ordering platform built with Next.js 15 (App Router): live menu,cash-on-delivery checkout, real-time courier tracking on a map, a role-guarded kitchenconsole, and full SEO/social discovery. Deployed, authenticated, measured.
+
+Live URL: https://food-delivery-system-sigma-pink.vercel.appRepository: github.com/mathiasbirhanu3-droid/Food-Delivery-System (project in addis-eats-next/)
 
 Quick start (fresh clone)
-cp .env.example .env.local        # then: openssl rand -base64 32 -> SESSION_SECRETnpm installnpm run dev                       # http://localhost:3000
-Demo accounts
-Email
-Password
-Role
-selam@demo.et	demo1234	customer (orders ord_812, ord_809, ord_815)
-dawit@demo.et	demo1234	customer (orders ord_814, ord_813, …)
-kitchen@demo.et	kitchen1234	kitchen (sees all orders)
+git clone https://github.com/mathiasbirhanu3-droid/Food-Delivery-System.gitcd Food-Delivery-System/addis-eats-nextnpm installcp .env.example .env.local        # fill the values belownpm run seed:hash                 # hash seeded passwords (removes plaintext)npm run dev                       # http://localhost:3000
+Environment variables (.env.local locally — Vercel dashboard in production)
+Key	Purpose
+SESSION_SECRET	HMAC-SHA256 signing key for the session cookie — REQUIRED in production. Generate: node -e "console.log(require('crypto').randomBytes(32).toString('base64'))"
+NEXT_PUBLIC_SITE_URL	Deployment URL — drives metadataBase, og:image, sitemap. (Build-time inlined: after changing it, REDEPLOY.) A hardcoded fallback chain exists in src/lib/site-url.ts
+GOOGLE_CLIENT_ID / GOOGLE_CLIENT_SECRET	Google sign-in (optional — the button hides without them). Redirect URIs: <site-url>/api/auth/google/callback for localhost AND production
+Demo accounts (assessor reference — never shown in the UI)
+Email	Password	Role	Owns
+selam@demo.et	demo1234	customer	ord_812 (pending), ord_809, ord_815
+dawit@demo.et	demo1234	customer	ord_814 (pending — attack target), ord_813
+kitchen@demo.et	kitchen1234	kitchen	sees ALL orders, status pipeline, menu manager, announcements, audit trail
+Each account has its own private orders and favorites — the ownership guarantee.
 
-Verify (tools, not opinions)
-Cookie flags: devtools → Application → Cookies → addis_session
-Open-redirect: visit /signin?next=https://example.com → lands in-app
-Ownership: as Selam, open /orders/ord_814 → 404 (scoped query)
-Live data & performance checks: see docs/AUTH.md · DATA.md · PERF.md
-Docs
-docs/PROJECT.md (consolidated SRS + design) · docs/AUTH.md · docs/DATA.md · docs/PERF.md
+Verify with tools (not opinions)
+Attacks (browser console on the deployed URL):await cancelOrder("ord_812")   // signed out        → { refusedBy: 'session' }await cancelOrder("ord_814")   // as selam@demo.et  → { refusedBy: 'ownership' }  (Dawit's order)/signin?next=https://example.com                   → lands in-app (open redirect refused)# API discipline (terminal):curl -i https://food-delivery-system-sigma-pink.vercel.app/api/orders/ord_812   # 401 signed out# Discovery:/sitemap.xml → real dishes, no private routes  ·  /robots.txt → private routes disallowedShare a dish URL in Telegram/WhatsApp → card with image + price# Search (Network tab): one request per pause, zero when empty# Tracking: two tabs — kitchen advances an order, customer's map moves live
+Performance (measured on the deployed build — full detail in docs/PERF.md)
+LCP 5.2 s → 1.51 s (Slow 4G + 4× CPU) · 0.69–1.10 s (Fast 4G, unthrottled) ·CLS 0.13 → 0 · INP 24 ms · Largest image 97.3 kB ·Lighthouse 99 Performance / 96 Accessibility / 100 Best Practices / 100 SEO ·Total Blocking Time 60 ms · Speed Index 2.5 s
 
-text
+Tech
+Next.js 15 (App Router, RSC, server actions, middleware, SSE) · TypeScript strict ·Tailwind CSS 3 · Zod · SWR · Leaflet · Web Crypto (HMAC sessions, PBKDF2 passwords) ·Google OAuth 2.0 · one JSON data source (src/data/db.json).
 
-
-## B9 · Run it & verify step 1
-```bash
-cp .env.example .env.local
-openssl rand -base64 32          # paste into SESSION_SECRET
-npm install && npm run dev
-Cookie flags — sign in as Selam, devtools → Application → Cookies: addis_session shows HttpOnly ✓, SameSite=Lax ✓ (Secure appears on the deployed HTTPS build — deploy today, per the sheet).
-Layer 1 — signed out, visit /orders → bounced to /signin?next=/orders.
-Layer 2 + ownership — as Selam open /orders (only ord_812/809/815) then /orders/ord_814 → 404.
-Attack 3 — /signin?next=https://example.com → lands on /menu, never off-site; the refusing line is sanitizeNext in src/lib/sanitize.ts.
-Kitchen demo — sign in as kitchen@demo.et → /kitchen shows the queue; as Selam, /kitchen → 404.
-Next step (step 2→3 of the build order): the cart store + checkout form (zod, derived fee/ETA), then placeOrder and cancelOrder server actions with the full three layers — which unlocks attacks 1 and 2 and the live recording into AUTH.md. Say the word and I'll build it.
+Documents
+docs/AUTH.md — every private route/action, its layers, the three attacks
+docs/DATA.md — every query: server/client, key, refresh rule, reasoning
+docs/PERF.md — the budget, both columns, causes of every change
+docs/FUTURE.md — what was cut and why; the roadmap
+docs/PROJECT.md — consolidated SRS + architecture
