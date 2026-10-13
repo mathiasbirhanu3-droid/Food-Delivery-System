@@ -107,53 +107,20 @@
       "name": "Mathias Birhanu",
       "role": "customer",
       "provider": "google"
+    },
+    {
+      "id": "u_mv6rpqlg",
+      "email": "barkot@gmail.com",
+      "name": "Barkot Kebede",
+      "phone": "0978845112",
+      "defaultZone": "Bole",
+      "passwordHash": "pbkdf2-sha256$100000$6b3b7cd5ec11fc6b13b8cc9c59dba03da015078cb8199d2b5ae902ebf890c8db",
+      "passwordSalt": "90d176dc2d818832080bd9857cedcf03",
+      "role": "customer",
+      "provider": "local"
     }
   ],
   "dishes": [
-    {
-      "id": "row-meat",
-      "slug": "row-meat",
-      "name": "Row Meat",
-      "description": "Ethiopian Traditional Food Made From Row mEat",
-      "ingredients": [
-        "Row meat",
-        "Awazze",
-        "Mitemita"
-      ],
-      "category": "Ethiopian",
-      "price": 2800,
-      "image": "https://images.unsplash.com/photo-1781685891312-2d8f7eba4c1d?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
-      "tags": [],
-      "spicy": false,
-      "vegetarian": false,
-      "popular": false,
-      "prepMinutes": 20,
-      "rating": 0,
-      "available": true,
-      "marketingLine": "prepared By Chef Moges",
-      "discountPercent": 0,
-      "specialOfDay": true
-    },
-    {
-      "id": "gored-gored",
-      "slug": "gored-gored",
-      "name": "Gored Gored",
-      "description": "Ethiopian food is as colorful and fun as it is tasty. It’s a communal meal that entails eating many Ethiopian dishes made with meat and vegetables with injera.",
-      "ingredients": [],
-      "category": "Ethiopian",
-      "price": 1320,
-      "image": "https://i.pinimg.com/1200x/82/9c/75/829c75c08fab9ec254d360fea5cb5626.jpg",
-      "tags": [],
-      "spicy": false,
-      "vegetarian": false,
-      "popular": false,
-      "prepMinutes": 20,
-      "rating": 0,
-      "available": true,
-      "marketingLine": "prepared By Chef Moges",
-      "discountPercent": 0,
-      "specialOfDay": false
-    },
     {
       "id": "doro-wat",
       "slug": "doro-wat",
@@ -169,7 +136,7 @@
       "specialOfDay": false,
       "category": "Ethiopian",
       "price": 320,
-      "image": "https://i.pinimg.com/736x/1d/3b/cb/1d3bcb0d9bb1bdc71a7a23d32408cfe4.jpg",
+      "image": "https://images.pexels.com/photos/23025188/pexels-photo-23025188.jpeg",
       "tags": [
         "classic"
       ],
@@ -178,7 +145,7 @@
       "popular": true,
       "prepMinutes": 35,
       "rating": 4.8,
-      "available": true,
+      "available": false,
       "marketingLine": "Chef Helina's 6-hour simmer — this weekend only!",
       "discountPercent": 15
     },
@@ -196,7 +163,7 @@
       ],
       "category": "Ethiopian",
       "price": 350,
-      "image": "https://i.pinimg.com/736x/a1/24/76/a12476f1cca1ef9debd348a2db391961.jpg",
+      "image": "https://i.pinimg.com/1200x/3b/f4/2b/3bf42b08b41dda4d2c31f9be05e4c332.jpg",
       "tags": [
         "sizzling"
       ],
@@ -221,7 +188,7 @@
       ],
       "category": "Ethiopian",
       "price": 380,
-      "image": "https://i.pinimg.com/736x/4f/bb/98/4fbb9815f7fa494deb05ad72b096e3e3.jpg",
+      "image": "https://i.pinimg.com/736x/09/fe/e8/09fee88012ce0873abbec7fe22fa3b2f.jpg",
       "tags": [
         "signature"
       ],
@@ -230,7 +197,7 @@
       "popular": false,
       "prepMinutes": 25,
       "rating": 4.7,
-      "available": true,
+      "available": false,
       "specialOfDay": false
     },
     {
@@ -246,7 +213,7 @@
       ],
       "category": "Ethiopian",
       "price": 190,
-      "image": "https://i.pinimg.com/736x/f3/e0/04/f3e00441e6e7a7459d95cf9d8f9f8292.jpg",
+      "image": "https://i.pinimg.com/1200x/a7/8b/c2/a78bc2c18ac861083097ea90e3692ef1.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -272,7 +239,7 @@
       ],
       "category": "Ethiopian",
       "price": 240,
-      "image": "https://i.pinimg.com/1200x/fe/66/d4/fe66d411004effede40bbac55e4e53fa.jpg",
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=70&w=1080&auto=format&fit=crop",
       "tags": [
         "platter"
       ],
@@ -420,7 +387,7 @@
       ],
       "category": "Drinks",
       "price": 60,
-      "image": "https://i.pinimg.com/736x/48/10/a7/4810a72a820724f4fe568ebfb5318c9a.jpg",
+      "image": "https://images.unsplash.com/photo-1774529233247-d3f34ed11994?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
       "tags": [
         "coffee"
       ],
@@ -443,7 +410,7 @@
       ],
       "category": "Drinks",
       "price": 120,
-      "image": "https://i.pinimg.com/1200x/d5/c5/d1/d5c5d1d3b72233c2df940dd852d9127c.jpg",
+      "image": "https://i.pinimg.com/736x/29/fa/7b/29fa7b0723c897e331c0d60a51c77a82.jpg",
       "tags": [
         "traditional"
       ],
@@ -821,6 +788,36 @@
       "userId": "u_kitchen",
       "dishId": "gored-gored",
       "at": "2026-10-11T19:34:27.139Z"
+    },
+    {
+      "userId": "u_mv4vhayq",
+      "dishId": "gored-gored",
+      "at": "2026-10-12T11:26:07.569Z"
+    },
+    {
+      "userId": "u_mv6rpqlg",
+      "dishId": "gored-gored",
+      "at": "2026-10-13T14:20:17.557Z"
+    },
+    {
+      "userId": "u_mv6rpqlg",
+      "dishId": "doro-wat",
+      "at": "2026-10-13T14:20:23.625Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "sega-tibs",
+      "at": "2026-10-13T17:57:14.133Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "kitfo",
+      "at": "2026-10-13T17:57:18.173Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "beyainatu",
+      "at": "2026-10-13T17:57:37.387Z"
     }
   ],
   "announcements": [
@@ -841,8 +838,8 @@
   ],
   "loginActivity": [
     {
-      "id": "act_mv4tdmxq_p9dp",
-      "at": "2026-10-12T05:31:12.350Z",
+      "id": "act_mv70sf27_ij28",
+      "at": "2026-10-13T18:34:11.647Z",
       "email": "kitchen@demo.et",
       "userId": "u_kitchen",
       "outcome": "success"
