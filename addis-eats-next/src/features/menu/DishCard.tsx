@@ -6,9 +6,17 @@ import { resolveDishImage } from '@/lib/resolve-dish-image';
 import { priceOf } from '@/lib/pricing';
 import AddToCart from '@/features/menu/AddToCart';
 import FavoriteButton from '@/features/favorites/FavoriteButton';
-import { formatETB } from '@/lib/format-etb';
+import { formatETB } from '@/lib/format';
 import type { Dish } from '@/lib/types';
 
+/**
+ * SERVER component — the flagship boundary decision: cards + social proof
+ * computed from the data source per render, zero client JS per card.
+ *
+ * LCP note: priority={true} (above-fold cards only) makes next/image emit
+ * a preload <link> AND fetchpriority="high" for that image — the browser
+ * starts the LCP download immediately instead of deprioritizing it.
+ */
 export default async function DishCard({ dish, priority = false }: { dish: Dish; priority?: boolean }) {
   const session = await getSession();
   const seedFavorited = session ? isFavorite(session.userId, dish.id) : false;
@@ -25,7 +33,10 @@ export default async function DishCard({ dish, priority = false }: { dish: Dish;
       <Link href={`/menu/${dish.id}`} className="block">
         <div className="relative aspect-[4/3] bg-primary-50 dark:bg-primary-900/40">
           <Image
-            src={image} alt={dish.name} fill priority={priority}
+            src={image}
+            alt={dish.name}
+            fill
+            priority={priority}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover transition duration-300 group-hover:scale-[1.03]"
           />
@@ -48,7 +59,9 @@ export default async function DishCard({ dish, priority = false }: { dish: Dish;
             <h2 className="font-display font-semibold">{dish.name}</h2>
             <span className="whitespace-nowrap text-right">
               {discounted && (
-                <span className="mr-1 text-sm text-ink/40 line-through dark:text-cream/40">{formatETB(original)}</span>
+                <span className="mr-1 text-sm text-ink/40 line-through dark:text-cream/40">
+                  {formatETB(original)}
+                </span>
               )}
               <span className="font-semibold text-primary">{formatETB(final)}</span>
             </span>

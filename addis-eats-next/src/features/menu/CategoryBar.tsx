@@ -3,9 +3,15 @@ import { CATEGORIES } from '@/features/menu/categories';
 
 /**
  * Menu categories — rendered as a LEFT COLUMN on desktop (sticky, with live
- * dish counts) and as horizontal scroll chips on mobile (thumb-friendly).
- * The sort controls live under a divider at the bottom of the same nav.
- * All state stays in the URL (?category= & ?sort=) — shareable, refresh-safe.
+ * dish counts) and as wrapping/scrollable chips on mobile.
+ *
+ * Mobile behavior (pick one by editing the mobile className):
+ * - overflow-x-auto  → chips slide in their own lane (contained, never the page)
+ * - flex-wrap        → chips flow onto multiple lines, nothing slides
+ * Default below: flex-wrap (friendlier with counts; all categories visible).
+ *
+ * The sort controls live under a divider at the bottom of the same nav
+ * (desktop). All state stays in the URL (?category= & ?sort=).
  */
 export default function CategoryBar({
   active,
@@ -41,7 +47,7 @@ export default function CategoryBar({
   return (
     <nav
       aria-label="Menu categories"
-      className="flex gap-2 overflow-x-auto pb-1 sm:flex-col sm:overflow-visible sm:pb-0"
+      className="flex flex-wrap gap-2 sm:flex-col sm:gap-2 sm:pb-0"
     >
       <Link href={hrefFor()} className={item(!active)} aria-current={!active ? 'page' : undefined}>
         <span>All dishes</span>
@@ -68,7 +74,9 @@ export default function CategoryBar({
         <Link
           href={active ? `/menu?category=${encodeURIComponent(active)}` : '/menu'}
           className={`rounded-xl px-4 py-1.5 text-sm font-medium transition ${
-            !sort ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream' : 'text-ink/60 hover:text-primary dark:text-cream/60'
+            !sort
+              ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream'
+              : 'text-ink/60 hover:text-primary dark:text-cream/60'
           }`}
           aria-current={!sort ? 'page' : undefined}
         >
@@ -77,7 +85,9 @@ export default function CategoryBar({
         <Link
           href={active ? `/menu?category=${encodeURIComponent(active)}&sort=loved` : '/menu?sort=loved'}
           className={`rounded-xl px-4 py-1.5 text-sm font-medium transition ${
-            sort === 'loved' ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream' : 'text-ink/60 hover:text-primary dark:text-cream/60'
+            sort === 'loved'
+              ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream'
+              : 'text-ink/60 hover:text-primary dark:text-cream/60'
           }`}
           aria-current={sort === 'loved' ? 'page' : undefined}
         >
@@ -86,7 +96,9 @@ export default function CategoryBar({
         <Link
           href={active ? `/menu?category=${encodeURIComponent(active)}&sort=offers` : '/menu?sort=offers'}
           className={`rounded-xl px-4 py-1.5 text-sm font-medium transition ${
-            sort === 'offers' ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream' : 'text-ink/60 hover:text-primary dark:text-cream/60'
+            sort === 'offers'
+              ? 'bg-ink/5 font-semibold text-ink dark:bg-cream/10 dark:text-cream'
+              : 'text-ink/60 hover:text-primary dark:text-cream/60'
           }`}
           aria-current={sort === 'offers' ? 'page' : undefined}
         >
