@@ -5,6 +5,7 @@ const ALLOWED_HOSTS = new Set([
   'images.unsplash.com',
   'i.pinimg.com',
   'images.pexels.com',
+  'pinterest.com'
 ]);
 
 const FALLBACK_IMAGE =
