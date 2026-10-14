@@ -6,19 +6,14 @@ import { computeCourierPosition } from '@/lib/tracking';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
-export const maxDuration = 60; // if your Vercel plan rejects this, lower to 30
+export const maxDuration = 60; // serverless cap; EventSource auto-reconnects after close
 
 /**
  * AUTH.md — a private SSE channel with the same discipline as the poll:
- * session verified HERE (401), then the scoped read (404). Middleware never
- * covers /api — the handler is the boundary. The stream re-reads the scoped
- * order every tick, so the status advancing mid-stream is picked up live,
- * and a session expiring mid-stream simply stops updates.
- *
- * Protocol: an initial snapshot immediately (seeded — the client already
- * holds server-rendered data), then a tick every 2.5 s. The stream closes
- * after ~50 s (serverless duration caps); `retry: 4000` makes EventSource
- * reconnect automatically — seamless for the viewer.
+ * session verified HERE (401), then the scoped read (404). The stream
+ * re-reads the scoped order every tick, so status advancing mid-stream is
+ * picked up live. Snapshot immediately (seeded), tick every 2.5 s, close
+ * after ~50 s — EventSource reconnects automatically.
  */
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -47,7 +42,6 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
       controller.enqueue(encoder.encode('retry: 4000\n\n'));
 
       const snapshot = () => {
-        // re-read on every tick — the order may advance mid-stream
         const fresh = getOrderFor(session.userId, id);
         if (!fresh) return null;
         return {

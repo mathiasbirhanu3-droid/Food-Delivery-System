@@ -4,13 +4,6 @@ import { useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import type { LatLng } from '@/lib/tracking';
 
-/**
- * Leaflet map — restaurant, dropoff, and the live courier. Leaflet touches
- * window, so it is dynamically imported inside useEffect (never SSR'd).
- * Markers are divIcons (emoji) — no image assets to break under bundlers.
- * The courier glides between SSE ticks via a CSS transform transition
- * (globals.css transitions .tracking-marker transforms).
- */
 export default function TrackingMap({
   restaurant, dropoff, courier, status,
 }: {
@@ -55,12 +48,10 @@ export default function TrackingMap({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // live courier position — glides via the CSS transition
   useEffect(() => {
     courierRef.current?.setLatLng(courier);
   }, [courier]);
 
-  // arrived — pin the courier on the dropoff
   useEffect(() => {
     if (status === 'delivered') courierRef.current?.setLatLng(dropoff);
   }, [status, dropoff]);

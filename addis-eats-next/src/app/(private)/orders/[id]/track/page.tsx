@@ -1,20 +1,23 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { getSession } from '@/lib/session-server';
 import { getDish, getOrderFor, getRestaurant, getZone } from '@/lib/db';
 import { computeCourierPosition, type LatLng } from '@/lib/tracking';
 import { formatDateTime, formatETB, formatEtaRange, formatPhone } from '@/lib/format';
 import OrderTracking from '@/features/orders/OrderTracking';
+import { requireSession } from '@/features/auth/guards';
 
 export const metadata: Metadata = { title: 'Live tracking', robots: { index: false } };
 
 export default async function TrackPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
-  // Layer 2 + scoped read — same discipline as every private page.
-  const session = await getSession();
-  if (!session) notFound();
+  // Layer 2 — signed-out users get a sign-in redirect (better than 404);
+  // a foreign order id still gets a 404 (the security working as designed).
+  const session = await requireSession(`/orders/${id}/track`);
+
+  // AUTH.md — scoped read: getOrderFor(session.userId, id). A foreign id is
+  // indistinguishable from a missing one — 404, never a leak.
   const order = getOrderFor(session.userId, id);
   if (!order) notFound();
 

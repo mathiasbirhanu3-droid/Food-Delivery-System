@@ -16,13 +16,6 @@ interface TrackingSnapshot {
   updatedAt: string;
 }
 
-/**
- * Live tracking over Server-Sent Events — seeded by the server render:
- * the initial status and courier position arrive as props, so first paint
- * is complete with zero spinner. EventSource then takes over; when the
- * server closes each ~50 s stream it reconnects automatically. A status
- * change triggers router.refresh() so server-rendered sections catch up.
- */
 export default function OrderTracking({
   orderId, initialStatus, initialCourier, initialCourierName,
   restaurant, dropoff, etaMin, etaMax, courierPhone,

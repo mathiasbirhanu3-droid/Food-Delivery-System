@@ -425,6 +425,33 @@
   ],
   "orders": [
     {
+      "id": "ord_904",
+      "userId": "u_mv4vhayq",
+      "items": [
+        {
+          "dishId": "shiro-wat",
+          "qty": 1,
+          "unitPrice": 190
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Mathias Birhanu",
+        "phone": "0919787858"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:43:23.707Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:43:23.707Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
       "id": "ord_903",
       "userId": "u_kitchen",
       "items": [
