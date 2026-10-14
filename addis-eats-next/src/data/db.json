@@ -425,6 +425,60 @@
   ],
   "orders": [
     {
+      "id": "ord_903",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "shiro-wat",
+          "qty": 1,
+          "unitPrice": 190
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0979738484"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:35:18.827Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:35:18.827Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_902",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0978785445"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:31:23.657Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:31:23.657Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
       "id": "ord_901",
       "userId": "u_kitchen",
       "items": [
