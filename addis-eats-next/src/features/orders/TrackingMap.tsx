@@ -38,6 +38,11 @@ export default function TrackingMap({
 
       map.fitBounds(L.latLngBounds([restaurant, dropoff]).pad(0.35), { maxZoom: 16 });
       mapRef.current = map;
+
+      // Force recalculation of container size to prevent grey box tiles on Vercel
+      setTimeout(() => {
+        map.invalidateSize();
+      }, 150);
     })();
 
     return () => {
