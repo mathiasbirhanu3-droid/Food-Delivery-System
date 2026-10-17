@@ -2,10 +2,20 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import StatusPill from '@/components/StatusPill';
-import TrackingMap from '@/features/orders/TrackingMap';
 import { formatEtaRange, formatPhone, formatTime } from '@/lib/format';
 import type { LatLng } from '@/lib/tracking';
+
+// Dynamically import TrackingMap with SSR disabled so Leaflet only runs in the browser
+const TrackingMap = dynamic(() => import('@/features/orders/TrackingMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-80 w-full rounded-2xl border border-ink/10 dark:border-cream/10 bg-zinc-100 dark:bg-zinc-800 animate-pulse flex items-center justify-center text-sm text-zinc-500">
+      Loading delivery map...
+    </div>
+  ),
+});
 
 interface TrackingSnapshot {
   status: string;
@@ -83,7 +93,7 @@ export default function OrderTracking({
 
       <dl className="mt-4 grid gap-2 rounded-2xl border border-ink/10 bg-white p-4 text-sm dark:border-cream/10 dark:bg-white/5 sm:grid-cols-3">
         <div>
-          <dt className="text-ink/50 dark:text-cream/50">Courier</dt>
+          <dt className="text-ink/55 dark:text-cream/50">Courier</dt>
           <dd className="font-medium">{courierName ?? 'Assigning…'}</dd>
           <dd className="text-xs text-ink/50 dark:text-cream/50">{formatPhone(courierPhone)}</dd>
         </div>
