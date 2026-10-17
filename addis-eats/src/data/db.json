@@ -1,0 +1,1016 @@
+{
+  "restaurant": {
+    "name": "Addis Eats",
+    "tagline": "Ethiopian kitchens, delivered hot.",
+    "address": "Bole Road, Addis Ababa, Ethiopia",
+    "phone": "+251 11 552 0110",
+    "hours": "Every day · 10:00 – 23:00",
+    "currency": "ETB",
+    "zones": [
+      "Bole",
+      "Kazanchis",
+      "Piassa",
+      "Saris",
+      "Gerji"
+    ],
+    "location": [
+      9.0054,
+      38.7636
+    ]
+  },
+  "zones": [
+    {
+      "name": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "center": [
+        9.01,
+        38.78
+      ]
+    },
+    {
+      "name": "Kazanchis",
+      "fee": 35,
+      "etaMin": 30,
+      "etaMax": 40,
+      "center": [
+        9.016,
+        38.758
+      ]
+    },
+    {
+      "name": "Piassa",
+      "fee": 50,
+      "etaMin": 35,
+      "etaMax": 50,
+      "center": [
+        9.034,
+        38.748
+      ]
+    },
+    {
+      "name": "Saris",
+      "fee": 45,
+      "etaMin": 30,
+      "etaMax": 45,
+      "center": [
+        8.963,
+        38.738
+      ]
+    },
+    {
+      "name": "Gerji",
+      "fee": 55,
+      "etaMin": 40,
+      "etaMax": 55,
+      "center": [
+        8.965,
+        38.81
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "u_selam",
+      "email": "selam@demo.et",
+      "name": "Selam Bekele",
+      "phone": "+251 91 123 4567",
+      "role": "customer",
+      "defaultZone": "Bole",
+      "passwordSalt": "f51b31431dd7510bca2b896a66ea16c9",
+      "passwordHash": "pbkdf2-sha256$100000$ec8ce94decc964d22ab0b0918e8f2897edb64c4443de15bffa9fe93b21a2f38a"
+    },
+    {
+      "id": "u_dawit",
+      "email": "dawit@demo.et",
+      "name": "Dawit Alemu",
+      "phone": "+251 91 234 5678",
+      "role": "customer",
+      "defaultZone": "Kazanchis",
+      "passwordSalt": "45d588bf12419c0a81bbceb4a70dc626",
+      "passwordHash": "pbkdf2-sha256$100000$bfaff3e0a60d85c0d6e9380a328a02fd3fd471c801c4d6127072015b40aa8aca"
+    },
+    {
+      "id": "u_kitchen",
+      "email": "kitchen@demo.et",
+      "name": "Kitchen Staff",
+      "phone": "+251 11 552 0110",
+      "role": "kitchen",
+      "defaultZone": "Bole",
+      "passwordSalt": "5b4dfbc655c9b0883dfa806e4755ad45",
+      "passwordHash": "pbkdf2-sha256$100000$8598af39153d9f4174a7480c11eab9deae7c4c1b7943a7c73ede3b0f1cafdb6d"
+    },
+    {
+      "id": "u_mv4vhayq",
+      "email": "mathiasbirhanu89@gmail.com",
+      "name": "Mathias Birhanu",
+      "role": "customer",
+      "provider": "google"
+    },
+    {
+      "id": "u_mv6rpqlg",
+      "email": "barkot@gmail.com",
+      "name": "Barkot Kebede",
+      "phone": "0978845112",
+      "defaultZone": "Bole",
+      "passwordHash": "pbkdf2-sha256$100000$6b3b7cd5ec11fc6b13b8cc9c59dba03da015078cb8199d2b5ae902ebf890c8db",
+      "passwordSalt": "90d176dc2d818832080bd9857cedcf03",
+      "role": "customer",
+      "provider": "local"
+    }
+  ],
+  "dishes": [
+    {
+      "id": "doro-wat",
+      "slug": "doro-wat",
+      "name": "Doro Wat",
+      "description": "Slow-simmered chicken stew in berbere and niter kibbeh, served with injera and ayib.",
+      "ingredients": [
+        "Chicken",
+        "Berbere",
+        "Niter kibbeh",
+        "Injera",
+        "Boiled egg"
+      ],
+      "specialOfDay": false,
+      "category": "Ethiopian",
+      "price": 320,
+      "image": "https://images.pexels.com/photos/23025188/pexels-photo-23025188.jpeg",
+      "tags": [
+        "classic"
+      ],
+      "spicy": true,
+      "vegetarian": false,
+      "popular": true,
+      "prepMinutes": 35,
+      "rating": 4.8,
+      "available": false,
+      "marketingLine": "Chef Helina's 6-hour simmer — this weekend only!",
+      "discountPercent": 15
+    },
+    {
+      "id": "sega-tibs",
+      "slug": "sega-tibs",
+      "name": "Sega Tibs",
+      "description": "Sizzling beef strips sautéed with rosemary, green chili and onion, on fresh injera.",
+      "ingredients": [
+        "Beef",
+        "Rosemary",
+        "Green chili",
+        "Onion",
+        "Injera"
+      ],
+      "category": "Ethiopian",
+      "price": 350,
+      "image": "https://i.pinimg.com/1200x/3b/f4/2b/3bf42b08b41dda4d2c31f9be05e4c332.jpg",
+      "tags": [
+        "sizzling"
+      ],
+      "spicy": true,
+      "vegetarian": false,
+      "popular": true,
+      "prepMinutes": 30,
+      "rating": 4.8,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "kitfo",
+      "slug": "kitfo",
+      "name": "Kitfo",
+      "description": "Hand-minced beef seasoned with mitmita and kibbeh, served with ayib and gomen.",
+      "ingredients": [
+        "Beef",
+        "Mitmita",
+        "Ayib",
+        "Gomen"
+      ],
+      "category": "Ethiopian",
+      "price": 380,
+      "image": "https://i.pinimg.com/736x/09/fe/e8/09fee88012ce0873abbec7fe22fa3b2f.jpg",
+      "tags": [
+        "signature"
+      ],
+      "spicy": true,
+      "vegetarian": false,
+      "popular": false,
+      "prepMinutes": 25,
+      "rating": 4.7,
+      "available": false,
+      "specialOfDay": false
+    },
+    {
+      "id": "shiro-wat",
+      "slug": "shiro-wat",
+      "name": "Shiro Wat",
+      "description": "Silky spiced chickpea stew — the vegetarian classic — with crisp injera.",
+      "ingredients": [
+        "Chickpea flour",
+        "Berbere",
+        "Garlic",
+        "Injera"
+      ],
+      "category": "Ethiopian",
+      "price": 190,
+      "image": "https://i.pinimg.com/1200x/a7/8b/c2/a78bc2c18ac861083097ea90e3692ef1.jpg",
+      "tags": [
+        "vegetarian"
+      ],
+      "spicy": true,
+      "vegetarian": true,
+      "popular": false,
+      "prepMinutes": 20,
+      "rating": 4.6,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "beyainatu",
+      "slug": "beyainatu",
+      "name": "Beyainatu",
+      "description": "The full vegetarian platter: misir, gomen, atkilt and shiro across a giant injera.",
+      "ingredients": [
+        "Misir",
+        "Gomen",
+        "Atkilt",
+        "Shiro",
+        "Injera"
+      ],
+      "category": "Ethiopian",
+      "price": 240,
+      "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "platter"
+      ],
+      "spicy": false,
+      "vegetarian": true,
+      "popular": false,
+      "prepMinutes": 30,
+      "rating": 4.7,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "margherita",
+      "slug": "margherita",
+      "name": "Margherita",
+      "description": "Thin crust, San Marzano tomato, fior di latte, torn basil.",
+      "ingredients": [
+        "Tomato",
+        "Mozzarella",
+        "Basil",
+        "Wheat crust"
+      ],
+      "category": "Pizza",
+      "price": 280,
+      "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "pizza"
+      ],
+      "spicy": false,
+      "vegetarian": true,
+      "popular": false,
+      "prepMinutes": 25,
+      "rating": 4.5,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "berbere-pizza",
+      "slug": "berbere-pizza",
+      "name": "Berbere Chicken Pizza",
+      "description": "House fusion: berbere-marinated chicken, red onion, mozzarella, drizzle of ayib sauce.",
+      "ingredients": [
+        "Berbere chicken",
+        "Mozzarella",
+        "Red onion",
+        "Ayib sauce"
+      ],
+      "category": "Pizza",
+      "price": 350,
+      "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "fusion"
+      ],
+      "spicy": true,
+      "vegetarian": false,
+      "popular": true,
+      "prepMinutes": 30,
+      "rating": 4.7,
+      "available": true,
+      "discountPercent": 10,
+      "specialOfDay": false
+    },
+    {
+      "id": "cheeseburger",
+      "slug": "cheeseburger",
+      "name": "Classic Cheeseburger",
+      "description": "Flame-grilled beef, cheddar, lettuce, tomato, house sauce, hand-cut fries.",
+      "ingredients": [
+        "Beef patty",
+        "Cheddar",
+        "Lettuce",
+        "Tomato",
+        "House sauce"
+      ],
+      "category": "Burgers",
+      "price": 260,
+      "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "grill"
+      ],
+      "spicy": false,
+      "vegetarian": false,
+      "popular": false,
+      "prepMinutes": 20,
+      "rating": 4.4,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "injera-burger",
+      "slug": "injera-burger",
+      "name": "Injera Burger",
+      "description": "The Addis street-fusion icon: beef patty, awaze mayo, crispy onion, toasted injera bun.",
+      "ingredients": [
+        "Beef patty",
+        "Awaze mayo",
+        "Crispy onion",
+        "Injera bun"
+      ],
+      "category": "Burgers",
+      "price": 310,
+      "image": "https://images.unsplash.com/photo-1550547660-d9450f859349?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "fusion"
+      ],
+      "spicy": true,
+      "vegetarian": false,
+      "popular": true,
+      "prepMinutes": 22,
+      "rating": 4.6,
+      "available": true,
+      "specialOfDay": true,
+      "marketingLine": "chef Amanuel -- Addis Food festival",
+      "discountPercent": 25
+    },
+    {
+      "id": "mango-juice",
+      "slug": "mango-juice",
+      "name": "Fresh Mango Juice",
+      "description": "Cold-pressed ripe mango, nothing added.",
+      "ingredients": [
+        "Mango",
+        "Ice"
+      ],
+      "category": "Drinks",
+      "price": 90,
+      "image": "https://images.unsplash.com/photo-1546173159-315724a31696?q=70&w=1080&auto=format&fit=crop",
+      "tags": [
+        "fresh"
+      ],
+      "spicy": false,
+      "vegetarian": true,
+      "popular": false,
+      "prepMinutes": 5,
+      "rating": 4.8,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "buna",
+      "slug": "buna",
+      "name": "Ethiopian Buna",
+      "description": "Traditional jebena coffee, roasted and brewed to order, served with popcorn.",
+      "ingredients": [
+        "Coffee beans",
+        "Cardamom"
+      ],
+      "category": "Drinks",
+      "price": 60,
+      "image": "https://images.unsplash.com/photo-1774529233247-d3f34ed11994?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D",
+      "tags": [
+        "coffee"
+      ],
+      "spicy": false,
+      "vegetarian": true,
+      "popular": true,
+      "prepMinutes": 8,
+      "rating": 4.9,
+      "available": true,
+      "specialOfDay": false
+    },
+    {
+      "id": "tej",
+      "slug": "tej",
+      "name": "Tej",
+      "description": "House honey wine with gesho, served in a berele.",
+      "ingredients": [
+        "Honey",
+        "Gesho"
+      ],
+      "category": "Drinks",
+      "price": 120,
+      "image": "https://i.pinimg.com/736x/29/fa/7b/29fa7b0723c897e331c0d60a51c77a82.jpg",
+      "tags": [
+        "traditional"
+      ],
+      "spicy": false,
+      "vegetarian": true,
+      "popular": false,
+      "prepMinutes": 3,
+      "rating": 4.3,
+      "available": true,
+      "specialOfDay": false
+    }
+  ],
+  "orders": [
+    {
+      "id": "ord_907",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0979738484"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T06:40:09.878Z",
+      "events": [
+        {
+          "at": "2026-10-14T06:40:09.878Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_906",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0979785412"
+      },
+      "status": "cancelled",
+      "placedAt": "2026-10-14T06:20:52.226Z",
+      "events": [
+        {
+          "at": "2026-10-14T06:20:52.226Z",
+          "status": "pending"
+        },
+        {
+          "at": "2026-10-14T06:22:29.766Z",
+          "status": "cancelled"
+        }
+      ]
+    },
+    {
+      "id": "ord_905",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0979738484"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T06:13:54.793Z",
+      "events": [
+        {
+          "at": "2026-10-14T06:13:54.793Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_904",
+      "userId": "u_mv4vhayq",
+      "items": [
+        {
+          "dishId": "shiro-wat",
+          "qty": 1,
+          "unitPrice": 190
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Mathias Birhanu",
+        "phone": "0919787858"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:43:23.707Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:43:23.707Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_903",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "shiro-wat",
+          "qty": 1,
+          "unitPrice": 190
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0979738484"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:35:18.827Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:35:18.827Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_902",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0978785445"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-14T05:31:23.657Z",
+      "events": [
+        {
+          "at": "2026-10-14T05:31:23.657Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_901",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "gored-gored",
+          "qty": 2,
+          "unitPrice": 1320
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0978544623"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-12T05:31:26.352Z",
+      "events": [
+        {
+          "at": "2026-10-12T05:31:26.352Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_900",
+      "userId": "u_kitchen",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        },
+        {
+          "dishId": "doro-wat",
+          "qty": 1,
+          "unitPrice": 272
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "contact": {
+        "name": "Kitchen Staff",
+        "phone": "0978787545"
+      },
+      "status": "pending",
+      "placedAt": "2026-10-11T17:01:48.074Z",
+      "events": [
+        {
+          "at": "2026-10-11T17:01:48.074Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_808",
+      "userId": "u_dawit",
+      "items": [
+        {
+          "dishId": "cheeseburger",
+          "qty": 1,
+          "unitPrice": 260
+        },
+        {
+          "dishId": "buna",
+          "qty": 1,
+          "unitPrice": 60
+        }
+      ],
+      "zone": "Kazanchis",
+      "fee": 35,
+      "etaMin": 30,
+      "etaMax": 40,
+      "status": "delivered",
+      "placedAt": "2025-06-09T18:12:00Z",
+      "events": [
+        {
+          "at": "2025-06-09T18:12:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-09T18:26:00Z",
+          "status": "preparing"
+        },
+        {
+          "at": "2025-06-09T18:44:00Z",
+          "status": "delivering"
+        },
+        {
+          "at": "2025-06-09T19:06:00Z",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "id": "ord_809",
+      "userId": "u_selam",
+      "items": [
+        {
+          "dishId": "kitfo",
+          "qty": 1,
+          "unitPrice": 380
+        },
+        {
+          "dishId": "buna",
+          "qty": 2,
+          "unitPrice": 60
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "note": "Kitfo leb leb, please.",
+      "status": "delivered",
+      "placedAt": "2025-06-11T18:02:00Z",
+      "events": [
+        {
+          "at": "2025-06-11T18:02:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-11T18:15:00Z",
+          "status": "preparing"
+        },
+        {
+          "at": "2025-06-11T18:33:00Z",
+          "status": "delivering"
+        },
+        {
+          "at": "2025-06-11T18:51:00Z",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "id": "ord_810",
+      "userId": "u_dawit",
+      "items": [
+        {
+          "dishId": "injera-burger",
+          "qty": 2,
+          "unitPrice": 310
+        }
+      ],
+      "zone": "Kazanchis",
+      "fee": 35,
+      "etaMin": 30,
+      "etaMax": 40,
+      "status": "delivered",
+      "placedAt": "2025-06-10T13:40:00Z",
+      "events": [
+        {
+          "at": "2025-06-10T13:40:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-10T13:55:00Z",
+          "status": "preparing"
+        },
+        {
+          "at": "2025-06-10T14:10:00Z",
+          "status": "delivering"
+        },
+        {
+          "at": "2025-06-10T14:31:00Z",
+          "status": "delivered"
+        }
+      ]
+    },
+    {
+      "id": "ord_811",
+      "userId": "u_dawit",
+      "items": [
+        {
+          "dishId": "margherita",
+          "qty": 2,
+          "unitPrice": 280
+        },
+        {
+          "dishId": "mango-juice",
+          "qty": 1,
+          "unitPrice": 90
+        }
+      ],
+      "zone": "Kazanchis",
+      "fee": 35,
+      "etaMin": 30,
+      "etaMax": 40,
+      "status": "delivering",
+      "deliveringAt": "2025-06-12T10:12:00Z",
+      "courier": {
+        "name": "Courier Abebe",
+        "phone": "+251 91 700 0001"
+      },
+      "placedAt": "2025-06-12T09:48:00Z",
+      "events": [
+        {
+          "at": "2025-06-12T09:48:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-12T10:01:00Z",
+          "status": "preparing"
+        },
+        {
+          "at": "2025-06-12T10:12:00Z",
+          "status": "delivering"
+        }
+      ]
+    },
+    {
+      "id": "ord_812",
+      "userId": "u_selam",
+      "items": [
+        {
+          "dishId": "doro-wat",
+          "qty": 1,
+          "unitPrice": 320
+        },
+        {
+          "dishId": "mango-juice",
+          "qty": 1,
+          "unitPrice": 90
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "note": "Extra awaze on the side, please.",
+      "status": "pending",
+      "placedAt": "2025-06-12T11:32:00Z",
+      "events": [
+        {
+          "at": "2025-06-12T11:32:00Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_813",
+      "userId": "u_dawit",
+      "items": [
+        {
+          "dishId": "shiro-wat",
+          "qty": 2,
+          "unitPrice": 190
+        },
+        {
+          "dishId": "buna",
+          "qty": 1,
+          "unitPrice": 60
+        }
+      ],
+      "zone": "Piassa",
+      "fee": 50,
+      "etaMin": 35,
+      "etaMax": 50,
+      "status": "preparing",
+      "placedAt": "2025-06-12T10:05:00Z",
+      "events": [
+        {
+          "at": "2025-06-12T10:05:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-12T10:21:00Z",
+          "status": "preparing"
+        }
+      ]
+    },
+    {
+      "id": "ord_814",
+      "userId": "u_dawit",
+      "items": [
+        {
+          "dishId": "berbere-pizza",
+          "qty": 1,
+          "unitPrice": 350
+        },
+        {
+          "dishId": "cheeseburger",
+          "qty": 1,
+          "unitPrice": 260
+        }
+      ],
+      "zone": "Kazanchis",
+      "fee": 35,
+      "etaMin": 30,
+      "etaMax": 40,
+      "note": "Ring the bell twice.",
+      "status": "pending",
+      "placedAt": "2025-06-12T11:58:00Z",
+      "events": [
+        {
+          "at": "2025-06-12T11:58:00Z",
+          "status": "pending"
+        }
+      ]
+    },
+    {
+      "id": "ord_815",
+      "userId": "u_selam",
+      "items": [
+        {
+          "dishId": "sega-tibs",
+          "qty": 1,
+          "unitPrice": 350
+        },
+        {
+          "dishId": "tej",
+          "qty": 1,
+          "unitPrice": 120
+        }
+      ],
+      "zone": "Bole",
+      "fee": 40,
+      "etaMin": 25,
+      "etaMax": 35,
+      "status": "preparing",
+      "placedAt": "2025-06-12T10:40:00Z",
+      "events": [
+        {
+          "at": "2025-06-12T10:40:00Z",
+          "status": "pending"
+        },
+        {
+          "at": "2025-06-12T10:52:00Z",
+          "status": "preparing"
+        }
+      ]
+    }
+  ],
+  "favorites": [
+    {
+      "userId": "u_selam",
+      "dishId": "doro-wat",
+      "at": "2025-06-10T18:00:00Z"
+    },
+    {
+      "userId": "u_selam",
+      "dishId": "kitfo",
+      "at": "2025-06-11T19:00:00Z"
+    },
+    {
+      "userId": "u_dawit",
+      "dishId": "doro-wat",
+      "at": "2025-06-11T12:00:00Z"
+    },
+    {
+      "userId": "u_dawit",
+      "dishId": "sega-tibs",
+      "at": "2025-06-12T09:00:00Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "gored-gored",
+      "at": "2026-10-11T19:34:27.139Z"
+    },
+    {
+      "userId": "u_mv4vhayq",
+      "dishId": "gored-gored",
+      "at": "2026-10-12T11:26:07.569Z"
+    },
+    {
+      "userId": "u_mv6rpqlg",
+      "dishId": "gored-gored",
+      "at": "2026-10-13T14:20:17.557Z"
+    },
+    {
+      "userId": "u_mv6rpqlg",
+      "dishId": "doro-wat",
+      "at": "2026-10-13T14:20:23.625Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "sega-tibs",
+      "at": "2026-10-13T17:57:14.133Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "kitfo",
+      "at": "2026-10-13T17:57:18.173Z"
+    },
+    {
+      "userId": "u_kitchen",
+      "dishId": "beyainatu",
+      "at": "2026-10-13T17:57:37.387Z"
+    }
+  ],
+  "announcements": [
+    {
+      "id": "ann_fasika",
+      "message": "Fasika festival - 35% meat discount",
+      "href": "/menu?category=Ethiopian",
+      "tone": "festival",
+      "active": true
+    },
+    {
+      "id": "ann_timket",
+      "message": "Timket week — free buna with every Ethiopian platter 🎉",
+      "href": "/menu?category=Ethiopian",
+      "tone": "festival",
+      "active": true
+    }
+  ],
+  "loginActivity": [
+    {
+      "id": "act_mv7vubis_t8dk",
+      "at": "2026-10-14T09:03:28.468Z",
+      "email": "kitchen@demo.et",
+      "userId": "u_kitchen",
+      "outcome": "success"
+    }
+  ]
+}
