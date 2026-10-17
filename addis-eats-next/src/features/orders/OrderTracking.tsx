@@ -7,7 +7,7 @@ import StatusPill from '@/components/StatusPill';
 import { formatEtaRange, formatPhone, formatTime } from '@/lib/format';
 import type { LatLng } from '@/lib/tracking';
 
-// Dynamically import TrackingMap with SSR disabled so Leaflet only runs in the browser
+// Dynamically import TrackingMap with SSR disabled to prevent Leaflet window errors on Vercel[cite: 3, 5]
 const TrackingMap = dynamic(() => import('@/features/orders/TrackingMap'), {
   ssr: false,
   loading: () => (
@@ -93,7 +93,7 @@ export default function OrderTracking({
 
       <dl className="mt-4 grid gap-2 rounded-2xl border border-ink/10 bg-white p-4 text-sm dark:border-cream/10 dark:bg-white/5 sm:grid-cols-3">
         <div>
-          <dt className="text-ink/55 dark:text-cream/50">Courier</dt>
+          <dt className="text-ink/50 dark:text-cream/50">Courier</dt>
           <dd className="font-medium">{courierName ?? 'Assigning…'}</dd>
           <dd className="text-xs text-ink/50 dark:text-cream/50">{formatPhone(courierPhone)}</dd>
         </div>
